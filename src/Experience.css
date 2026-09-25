@@ -1,0 +1,154 @@
+
+.experience-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 32px;
+  color: #f8fafc;
+}
+
+.experience-hero {
+  margin-bottom: 80px;
+}
+
+.experience-page .eyebrow {
+  color: #22d3ee;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.experience-hero h1 {
+  font-size: clamp(36px, 5vw, 52px);
+  margin: 16px 0;
+}
+
+.experience-hero > p:last-child {
+  max-width: 650px;
+  color: #94a3b8;
+  line-height: 1.8;
+}
+
+.experience-section {
+  margin-bottom: 80px;
+}
+
+.experience-section > .eyebrow {
+  margin-bottom: 24px;
+}
+
+.experience-list {
+  display: grid;
+  gap: 20px;
+}
+
+.experience-card {
+  padding: 28px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  transition: border-color 0.2s;
+}
+
+.experience-card:hover {
+  border-color: #22d3ee;
+}
+
+.experience-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.experience-card h2 {
+  font-size: 22px;
+  margin: 0 0 8px;
+}
+
+.experience-company {
+  color: #22d3ee;
+  font-weight: 600;
+}
+
+.experience-dates {
+  color: #94a3b8;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.experience-summary {
+  color: #cbd5e1;
+  line-height: 1.8;
+  margin: 20px 0;
+}
+
+.experience-page .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.experience-page .tags span {
+  padding: 6px 10px;
+  background: #334155;
+  color: #cbd5e1;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.experience-page .details-button {
+  background: transparent;
+  border: 0;
+  color: #22d3ee;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 0;
+}
+
+.experience-page .details-button:hover {
+  color: #67e8f9;
+}
+
+.experience-page .details-button:focus-visible {
+  outline: 2px solid #22d3ee;
+  outline-offset: 4px;
+}
+
+.experience-details {
+  margin-top: 20px;
+  padding: 20px 20px 20px 36px;
+  background: #0f172a;
+  border-radius: 8px;
+  color: #cbd5e1;
+  line-height: 1.8;
+}
+
+.experience-details li {
+  margin-bottom: 12px;
+}
+
+.experience-details li:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+  .experience-page {
+    padding: 60px 20px;
+  }
+
+  .experience-card {
+    padding: 20px;
+  }
+
+  .experience-card-top {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .experience-dates {
+    white-space: normal;
+  }
+}

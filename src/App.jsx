@@ -68,6 +68,7 @@ function App() {
 
         <nav aria-label="Main navigation">
           <a href="#projects">Projects</a>
+          <a href="/experience">Experience</a>
           <a href="#about">About</a>
           <a
             href="https://github.com/chentenchi"
@@ -195,8 +196,9 @@ function App() {
             ))}
           </div>
         </section>
-<GroceryDashboard />
-
+<div style={{ minHeight: '1200px' }}>
+  <GroceryDashboard />
+</div>
         <section id="about" className="section about">
           <p className="eyebrow">ABOUT ME</p>
           <h2>Analytics with a business perspective.</h2>
