@@ -70,6 +70,7 @@ function App() {
           <a href="#projects">Projects</a>
           <a href="/experience">Experience</a>
           <a href="#about">About</a>
+          <a href="#contact">Contact</a>
           <a
             href="https://github.com/chentenchi"
             target="_blank"
@@ -224,6 +225,39 @@ function App() {
             ))}
           </div>
         </section>
+
+<section id="contact" className="section contact">
+  <p className="eyebrow">GET IN TOUCH</p>
+  <h2>Let's connect.</h2>
+
+  <p>
+    I'm always open to connecting about opportunities
+    in data analytics, data science, business analytics, and AI.
+    Feel free to reach out!
+  </p>
+
+  <div className="contact-links">
+    <a href="mailto:chentenchi@gmail.com">
+      Email ↗
+    </a>
+
+    <a
+      href="https://www.linkedin.com/in/tenchi/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      LinkedIn ↗
+    </a>
+
+    <a
+      href="https://github.com/chentenchi"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      GitHub ↗
+    </a>
+  </div>
+</section>
       </main>
 
       <footer className="footer">

@@ -107,6 +107,7 @@ return (
             Experience
         </Link>
         <Link to="/#about">About</Link>
+        <a href="/#contact">Contact</a>
         <a
           href="https://github.com/chentenchi"
           target="_blank"

@@ -316,3 +316,54 @@ nav a:hover,
   background: #67e8f9;
   text-decoration: none;
 }
+
+/* Contact Section */
+
+.contact {
+  margin-top: 64px;
+  padding: 48px 0 64px;
+  border-top: 1px solid #334155;
+}
+
+.contact h2 {
+  margin: 12px 0 16px;
+  font-size: 32px;
+}
+
+.contact > p:not(.eyebrow) {
+  max-width: 620px;
+  color: #94a3b8;
+  line-height: 1.8;
+}
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.contact-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  background: #1e293b;
+  border: 1px solid #475569;
+  border-radius: 8px;
+  color: #67e8f9;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.contact-links a:hover {
+  background: #263850;
+  border-color: #67e8f9;
+}
+
+.contact-links a:focus-visible {
+  outline: 2px solid #67e8f9;
+  outline-offset: 3px;
+}
