@@ -21,9 +21,9 @@ const formatDate = (date) =>
 
 function GroceryDashboard() {
   const [rows, setRows] = useState([])
+  const [blsRows, setBlsRows] = useState([])
   const [selectedId, setSelectedId] = useState('')
   const [dateRange, setDateRange] = useState('all')
-  const [compareId, setCompareId] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
@@ -51,6 +51,7 @@ function GroceryDashboard() {
             ...row,
             effective_price: Number(row.effective_price),
             regular_price: Number(row.regular_price),
+            normalized_price: Number(row.normalized_price),
             on_sale: row.on_sale?.trim().toLowerCase() === 'true'
           }))
           .filter((row) => Number.isFinite(row.effective_price))
@@ -67,6 +68,40 @@ function GroceryDashboard() {
         setLoading(false)
       })
   }, [])
+
+useEffect(() => {
+  fetch(`${import.meta.env.BASE_URL}data/bls_price_history.csv`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Could not load BLS data')
+      }
+      return response.text()
+    })
+    .then((csv) => {
+      const result = Papa.parse(csv, {
+        header: true,
+        skipEmptyLines: true
+      })
+
+      const cleaned = result.data
+        .filter(
+          (row) =>
+            row.category &&
+            row.standard_unit &&
+            row.observation_date &&
+            Number(row.bls_price) > 0
+        )
+        .map((row) => ({
+          ...row,
+          bls_price: Number(row.bls_price)
+        }))
+
+      setBlsRows(cleaned)
+    })
+    .catch((err) => {
+      console.error('Failed to load BLS data:', err)
+    })
+}, [])
 
   if (loading) {
     return (
@@ -118,6 +153,16 @@ function GroceryDashboard() {
     products.find((row) => row.product_id === selectedId) ??
     defaultProduct
 
+    const selectedBls = blsRows
+    .filter(
+        (row) =>
+        row.category === selectedProduct?.category &&
+        row.standard_unit === selectedProduct?.standard_unit
+    )
+    .sort((a, b) =>
+        b.observation_date.localeCompare(a.observation_date)
+    )[0] ?? null
+
   const priceHistory = rows
     .filter((row) => row.product_id === selectedProduct.product_id)
     .sort((a, b) =>
@@ -125,7 +170,8 @@ function GroceryDashboard() {
     )
     .map((row) => ({
       date: row.snapshot_date,
-      price: row.effective_price
+      price: row.effective_price,
+      normalizedPrice: row.normalized_price
     }))
 let visibleHistory = priceHistory
 
@@ -145,52 +191,24 @@ if (dateRange !== 'all' && priceHistory.length > 0) {
   )
 }
 
-const comparisonHistory = compareId
-  ? rows
-      .filter((row) => row.product_id === compareId)
-      .sort((a, b) =>
-        a.snapshot_date.localeCompare(b.snapshot_date)
-      )
-      .map((row) => ({
-        date: row.snapshot_date,
-        comparePrice: row.effective_price
-      }))
-  : []
+const latestNormalizedPrice =
+  priceHistory.at(-1)?.normalizedPrice
 
-const combinedHistory = [
-  ...new Set([
-    ...priceHistory.map((row) => row.date),
-    ...comparisonHistory.map((row) => row.date)
-  ])
-]
-  .sort()
-  .map((date) => ({
-    date,
-    price: priceHistory.find(
-      (row) => row.date === date
-    )?.price,
-    comparePrice: comparisonHistory.find(
-      (row) => row.date === date
-    )?.comparePrice
-  }))
+const priceDifferencePercent =
+  selectedBls?.bls_price > 0 &&
+  Number.isFinite(latestNormalizedPrice)
+    ? ((latestNormalizedPrice - selectedBls.bls_price) /
+        selectedBls.bls_price) * 100
+    : null
 
-let visibleCombinedHistory = combinedHistory
+const blsComparisonHistory = visibleHistory.map((row) => ({
+  date: row.date,
+  krogerPrice: Number.isFinite(row.normalizedPrice)
+    ? row.normalizedPrice
+    : null,
+  blsPrice: selectedBls?.bls_price ?? null
+}))
 
-if (dateRange !== 'all' && priceHistory.length > 0) {
-  const latest = new Date(
-    `${priceHistory[priceHistory.length - 1].date}T00:00:00Z`
-  )
-
-  latest.setUTCDate(
-    latest.getUTCDate() - (Number(dateRange) - 1)
-  )
-
-  const cutoff = latest.toISOString().slice(0, 10)
-
-  visibleCombinedHistory = combinedHistory.filter(
-    (row) => row.date >= cutoff
-  )
-}
   return (
     <section id="grocery-dashboard" className="section grocery-dashboard">
       <p className="eyebrow">INTERACTIVE ANALYTICS</p>
@@ -259,31 +277,6 @@ if (dateRange !== 'all' && priceHistory.length > 0) {
   </select>
 </div>
 
-<div className="product-selector">
-  <label htmlFor="grocery-compare">
-    Compare with (optional)
-  </label>
-  <select
-    id="grocery-compare"
-    value={compareId}
-    onChange={(event) => setCompareId(event.target.value)}
-  >
-    <option value="">No comparison</option>
-    {products
-      .filter(
-        (product) =>
-          product.product_id !== selectedProduct.product_id
-      )
-      .map((product) => (
-        <option
-          key={product.product_id}
-          value={product.product_id}
-        >
-          {product.product_name}
-        </option>
-      ))}
-  </select>
-</div>
         <div className="selected-price">
           <span>Latest recorded price</span>
           <strong>{money(selectedProduct.effective_price)}</strong>
@@ -293,9 +286,39 @@ if (dateRange !== 'all' && priceHistory.length > 0) {
           )}
         </div>
 
+{selectedBls && priceDifferencePercent !== null && (
+  <div className="benchmark-summary">
+    <div>
+      <span>BLS benchmark</span>
+      <strong>
+        {money(selectedBls.bls_price)} / {selectedBls.standard_unit}
+      </strong>
+    </div>
+
+    <div>
+      <span>Price difference</span>
+      <strong>
+        {Math.abs(priceDifferencePercent).toFixed(1)}%{' '}
+        {priceDifferencePercent < 0 ? 'below' : 'above'} benchmark
+      </strong>
+    </div>
+  </div>
+)}
+
+{blsRows.length > 0 && !selectedBls && (
+  <div className="benchmark-notice" role="status">
+    <strong>Kroger price history only</strong>
+    <p>
+      No comparable BLS national average price is
+      available in the current dataset for this product.
+      Kroger's historical prices are shown independently.
+    </p>
+  </div>
+)}
+
         <div className="grocery-chart-container">
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={visibleCombinedHistory}>
+            <LineChart data={blsComparisonHistory}>
               <CartesianGrid
                 stroke="#334155"
                 strokeDasharray="3 3"
@@ -306,12 +329,16 @@ if (dateRange !== 'all' && priceHistory.length > 0) {
                 tickFormatter={formatDate}
                 stroke="#94a3b8"
                 minTickGap={25}
+                tickMargin={12}
+                padding={{ left: 15, right: 10 }}
+                height={40}
               />
 
               <YAxis
                 tickFormatter={money}
                 stroke="#94a3b8"
-                width={65}
+                width={75}
+                tickMargin={12}
                 domain={[0, 'auto']}
               />
 
@@ -327,28 +354,30 @@ if (dateRange !== 'all' && priceHistory.length > 0) {
   height={40}
 />
               <Line
-                type="linear"
-                dataKey="price"
-                name={selectedProduct.product_name}
-                stroke="#22d3ee"
-                strokeWidth={3}
-                dot={false}
-                activeDot={{ r: 5 }}
-              />
+  type="linear"
+  dataKey="krogerPrice"
+  name={`Kroger price (${selectedProduct.standard_unit})`}
+  stroke="#22d3ee"
+  strokeWidth={3}
+  dot={false}
+  activeDot={{ r: 5 }}
+/>
 
-{compareId && (
+{selectedBls && (
   <Line
     type="linear"
-    dataKey="comparePrice"
-name={
-  products.find(
-    (product) => product.product_id === compareId
-  )?.product_name ?? 'Comparison product'
-}
+    dataKey="blsPrice"
+name={`BLS U.S. Average (${selectedBls.standard_unit}, ${new Date(
+  `${selectedBls.observation_date}T12:00:00`
+).toLocaleDateString('en-US', {
+  month: 'short',
+  year: 'numeric'
+})})`}
     stroke="#f59e0b"
     strokeWidth={3}
+    strokeDasharray="6 4"
     dot={false}
-    activeDot={{ r: 5 }}
+    activeDot={false}
     connectNulls={false}
   />
 )}
@@ -358,9 +387,7 @@ name={
       </div>
 
       <p className="dashboard-note">
-        Basket cost assumes one package of each tracked product.
-        Prices represent historical observations from one
-        Kroger location, not live store prices.
+        Basket cost assumes one package of each tracked product. Kroger prices are historical observations from one location. BLS comparisons use the latest available U.S. City Average category benchmark and may not represent an identical product or observation date.
       </p>
     </section>
   )
