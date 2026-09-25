@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Papa from 'papaparse'
 import {
   LineChart, Line, XAxis, YAxis,
-  CartesianGrid, Tooltip, ResponsiveContainer
+  CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts'
 import './GroceryDashboard.css'
 
@@ -22,6 +22,8 @@ const formatDate = (date) =>
 function GroceryDashboard() {
   const [rows, setRows] = useState([])
   const [selectedId, setSelectedId] = useState('')
+  const [dateRange, setDateRange] = useState('all')
+  const [compareId, setCompareId] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
@@ -125,7 +127,70 @@ function GroceryDashboard() {
       date: row.snapshot_date,
       price: row.effective_price
     }))
+let visibleHistory = priceHistory
 
+if (dateRange !== 'all' && priceHistory.length > 0) {
+  const latest = new Date(
+    `${priceHistory[priceHistory.length - 1].date}T00:00:00Z`
+  )
+
+  latest.setUTCDate(
+    latest.getUTCDate() - (Number(dateRange) - 1)
+  )
+
+  const cutoff = latest.toISOString().slice(0, 10)
+
+  visibleHistory = priceHistory.filter(
+    (row) => row.date >= cutoff
+  )
+}
+
+const comparisonHistory = compareId
+  ? rows
+      .filter((row) => row.product_id === compareId)
+      .sort((a, b) =>
+        a.snapshot_date.localeCompare(b.snapshot_date)
+      )
+      .map((row) => ({
+        date: row.snapshot_date,
+        comparePrice: row.effective_price
+      }))
+  : []
+
+const combinedHistory = [
+  ...new Set([
+    ...priceHistory.map((row) => row.date),
+    ...comparisonHistory.map((row) => row.date)
+  ])
+]
+  .sort()
+  .map((date) => ({
+    date,
+    price: priceHistory.find(
+      (row) => row.date === date
+    )?.price,
+    comparePrice: comparisonHistory.find(
+      (row) => row.date === date
+    )?.comparePrice
+  }))
+
+let visibleCombinedHistory = combinedHistory
+
+if (dateRange !== 'all' && priceHistory.length > 0) {
+  const latest = new Date(
+    `${priceHistory[priceHistory.length - 1].date}T00:00:00Z`
+  )
+
+  latest.setUTCDate(
+    latest.getUTCDate() - (Number(dateRange) - 1)
+  )
+
+  const cutoff = latest.toISOString().slice(0, 10)
+
+  visibleCombinedHistory = combinedHistory.filter(
+    (row) => row.date >= cutoff
+  )
+}
   return (
     <section id="grocery-dashboard" className="section grocery-dashboard">
       <p className="eyebrow">INTERACTIVE ANALYTICS</p>
@@ -181,6 +246,44 @@ function GroceryDashboard() {
           </div>
         </div>
 
+<div className="product-selector">
+  <label htmlFor="grocery-range">Date range</label>
+  <select
+    id="grocery-range"
+    value={dateRange}
+    onChange={(event) => setDateRange(event.target.value)}
+  >
+    <option value="all">All data</option>
+    <option value="14">Last 14 days</option>
+    <option value="7">Last 7 days</option>
+  </select>
+</div>
+
+<div className="product-selector">
+  <label htmlFor="grocery-compare">
+    Compare with (optional)
+  </label>
+  <select
+    id="grocery-compare"
+    value={compareId}
+    onChange={(event) => setCompareId(event.target.value)}
+  >
+    <option value="">No comparison</option>
+    {products
+      .filter(
+        (product) =>
+          product.product_id !== selectedProduct.product_id
+      )
+      .map((product) => (
+        <option
+          key={product.product_id}
+          value={product.product_id}
+        >
+          {product.product_name}
+        </option>
+      ))}
+  </select>
+</div>
         <div className="selected-price">
           <span>Latest recorded price</span>
           <strong>{money(selectedProduct.effective_price)}</strong>
@@ -192,7 +295,7 @@ function GroceryDashboard() {
 
         <div className="grocery-chart-container">
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={priceHistory}>
+            <LineChart data={visibleCombinedHistory}>
               <CartesianGrid
                 stroke="#334155"
                 strokeDasharray="3 3"
@@ -213,21 +316,42 @@ function GroceryDashboard() {
               />
 
               <Tooltip
-                labelFormatter={formatDate}
-                formatter={(value) => [
-                  money(value),
-                  'Effective price'
-                ]}
+                 labelFormatter={formatDate}
+  formatter={(value, name) => [
+    money(value),
+    name
+  ]}
               />
-
+<Legend
+  position="bottom"
+  height={40}
+/>
               <Line
                 type="linear"
                 dataKey="price"
+                name={selectedProduct.product_name}
                 stroke="#22d3ee"
                 strokeWidth={3}
                 dot={false}
                 activeDot={{ r: 5 }}
               />
+
+{compareId && (
+  <Line
+    type="linear"
+    dataKey="comparePrice"
+name={
+  products.find(
+    (product) => product.product_id === compareId
+  )?.product_name ?? 'Comparison product'
+}
+    stroke="#f59e0b"
+    strokeWidth={3}
+    dot={false}
+    activeDot={{ r: 5 }}
+    connectNulls={false}
+  />
+)}
             </LineChart>
           </ResponsiveContainer>
         </div>
