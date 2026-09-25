@@ -304,3 +304,15 @@ nav a:hover,
     padding: 65px 0;
   }
 }
+
+.project-actions .dashboard-link {
+  background: #22d3ee;
+  color: #0b1120;
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+
+.project-actions .dashboard-link:hover {
+  background: #67e8f9;
+  text-decoration: none;
+}

@@ -1,6 +1,7 @@
 
 import { useState } from 'react'
 import './App.css'
+import GroceryDashboard from './GroceryDashboard'
 
 const projects = [
   {
@@ -174,7 +175,14 @@ function App() {
                       ? 'Show less −'
                       : 'Project details +'}
                   </button>
-
+  {project.id === 'grocery' && (
+    <a
+      href="#grocery-dashboard"
+      className="dashboard-link"
+    >
+      Explore Dashboard ↓
+    </a>
+  )}
                   <a
                     href={project.github}
                     target="_blank"
@@ -187,6 +195,7 @@ function App() {
             ))}
           </div>
         </section>
+<GroceryDashboard />
 
         <section id="about" className="section about">
           <p className="eyebrow">ABOUT ME</p>
