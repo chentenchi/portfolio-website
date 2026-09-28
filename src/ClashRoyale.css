@@ -1,0 +1,522 @@
+
+/* Clash Royale Project Page */
+
+.clash-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 72px 24px 100px;
+}
+
+/* Introduction */
+
+.clash-hero {
+  padding-bottom: 56px;
+  border-bottom: 1px solid #334155;
+}
+
+.clash-hero h1 {
+  margin: 12px 0 20px;
+  color: #f8fafc;
+  font-size: clamp(32px, 5vw, 44px);
+  line-height: 1.2;
+}
+
+.clash-description {
+  max-width: 680px;
+  color: #94a3b8;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.clash-hero .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+/* Model performance */
+
+.clash-performance {
+  padding: 56px 0;
+  border-bottom: 1px solid #334155;
+}
+
+.clash-performance h2,
+.clash-workflow h2 {
+  margin: 12px 0 16px;
+  color: #f8fafc;
+  font-size: 28px;
+}
+
+.clash-performance > p:not(.eyebrow),
+.clash-workflow > p:not(.eyebrow) {
+  max-width: 680px;
+  color: #94a3b8;
+  line-height: 1.8;
+}
+
+.clash-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.clash-metric-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px;
+  background: #1e293b;
+  border: 1px solid #475569;
+  border-radius: 12px;
+}
+
+.clash-metric-card span {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.clash-metric-card strong {
+  color: #f8fafc;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.clash-metric-card small {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+/* Project workflow */
+
+.clash-workflow {
+  padding: 56px 0;
+}
+
+/* Responsive foundation */
+
+@media (max-width: 600px) {
+  .clash-page {
+    padding: 40px 16px 64px;
+  }
+
+  .clash-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .clash-metric-card {
+    padding: 20px;
+  }
+}
+
+
+/* Interactive ML Pipeline */
+
+.clash-stages {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.clash-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 16px;
+  min-height: 110px;
+  background: #1e293b;
+  color: #f8fafc;
+  border: 1px solid #475569;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.clash-stage span {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.clash-stage:hover {
+  border-color: #22d3ee;
+}
+
+.clash-stage.active {
+  background: #164e63;
+  border-color: #22d3ee;
+}
+
+.clash-stage.active span {
+  color: #67e8f9;
+}
+
+.clash-stage:focus-visible {
+  outline: 2px solid #67e8f9;
+  outline-offset: 3px;
+}
+
+/* Selected stage details */
+
+.clash-stage-details {
+  margin-top: 20px;
+  padding: 28px;
+  background: #1e293b;
+  border: 1px solid #475569;
+  border-radius: 10px;
+}
+
+.clash-stage-details h3 {
+  margin: 0 0 12px;
+  color: #67e8f9;
+  font-size: 20px;
+}
+
+.clash-stage-details p {
+  margin: 0;
+  color: #cbd5e1;
+  line-height: 1.8;
+}
+
+/* Basic responsive layout */
+
+@media (max-width: 750px) {
+  .clash-stages {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .clash-stages {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* Model Visualizations */
+
+.clash-visualizations {
+  padding: 56px 0;
+  border-top: 1px solid #334155;
+}
+
+.clash-visualizations h2 {
+  margin: 12px 0 16px;
+  color: #f8fafc;
+  font-size: 28px;
+}
+
+.clash-visualizations > p:not(.eyebrow) {
+  max-width: 680px;
+  color: #94a3b8;
+  line-height: 1.8;
+}
+
+/* ROC Curve Card */
+
+.clash-chart-card {
+  margin-top: 28px;
+  padding: 28px;
+  background: #1e293b;
+  border: 1px solid #475569;
+  border-radius: 12px;
+}
+
+.clash-chart-card h3 {
+  margin: 0 0 24px;
+  color: #f8fafc;
+  font-size: 20px;
+}
+
+.clash-roc-image {
+  display: block;
+  width: 100%;
+  max-width: 650px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+.clash-chart-card > p {
+  margin: 24px 0 0;
+  color: #cbd5e1;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+  .clash-chart-card {
+    padding: 16px;
+  }
+}
+
+
+/* Project Takeaways */
+
+.clash-findings {
+  padding: 56px 0;
+  border-top: 1px solid #334155;
+}
+
+.clash-findings h2 {
+  margin: 12px 0 28px;
+  color: #f8fafc;
+  font-size: 28px;
+}
+
+.clash-findings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.clash-finding-card {
+  padding: 24px;
+  background: #1e293b;
+  border: 1px solid #475569;
+  border-radius: 12px;
+}
+
+.clash-finding-card span {
+  color: #67e8f9;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.clash-finding-card h3 {
+  margin: 16px 0 12px;
+  color: #f8fafc;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.clash-finding-card p {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* GitHub Repository */
+
+.clash-project-link {
+  margin-top: 32px;
+  padding: 28px;
+  background: #1e293b;
+  border: 1px solid #475569;
+  border-radius: 12px;
+}
+
+.clash-project-link h3 {
+  margin: 0 0 12px;
+  color: #f8fafc;
+  font-size: 20px;
+}
+
+.clash-project-link p {
+  margin: 0 0 20px;
+  color: #94a3b8;
+  line-height: 1.7;
+}
+
+.clash-project-link .dashboard-link {
+  display: inline-flex;
+  padding: 12px 20px;
+  background: #22d3ee;
+  color: #0f172a;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.clash-project-link .dashboard-link:hover {
+  background: #67e8f9;
+}
+
+/* Responsive foundation */
+
+@media (max-width: 800px) {
+  .clash-findings-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* Enhanced Pipeline */
+
+.clash-stages {
+  gap: 14px;
+  margin-top: 36px;
+}
+
+.clash-stage {
+  position: relative;
+  min-height: 135px;
+  padding: 18px 14px;
+  gap: 18px;
+
+  background: linear-gradient(
+    160deg,
+    #243247,
+    #1b2738
+  );
+
+  border: 1px solid #475569;
+  border-top: 3px solid #64748b;
+  border-radius: 10px;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    transform 0.2s;
+}
+
+/* Numbered stage indicators */
+
+.clash-stage span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  border: 1px solid #64748b;
+  border-radius: 50%;
+
+  color: #cbd5e1;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Connections between stages */
+
+.clash-stage:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  right: -14px;
+  top: 35px;
+  z-index: 2;
+
+  color: #67e8f9;
+  font-size: 18px;
+  pointer-events: none;
+}
+
+/* Interaction */
+
+.clash-stage:hover {
+  transform: translateY(-3px);
+  border-color: #22d3ee;
+}
+
+.clash-stage.active {
+  background: linear-gradient(
+    160deg,
+    #164e63,
+    #155e75
+  );
+
+  border-color: #22d3ee;
+  box-shadow: 0 6px 24px rgba(34, 211, 238, 0.12);
+}
+
+.clash-stage.active span {
+  border-color: #67e8f9;
+  background: #22d3ee;
+  color: #0f172a;
+}
+
+/* Expanded information panel */
+
+.clash-stage-details {
+  margin-top: 24px;
+  padding: 30px;
+
+  background: linear-gradient(
+    120deg,
+    #243247,
+    #1e293b
+  );
+
+  border: 1px solid #475569;
+  border-left: 4px solid #22d3ee;
+  border-radius: 10px;
+}
+
+.clash-stage-details h3 {
+  font-size: 22px;
+}
+
+/* Hide arrows when stages wrap */
+
+@media (max-width: 750px) {
+  .clash-stage:not(:last-child)::after {
+    display: none;
+  }
+}
+
+/* Pipeline Tools */
+
+.clash-stage-tools {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #475569;
+}
+
+.clash-stage-tools h4,
+.clash-stage-output h4 {
+  margin: 0 0 12px;
+  color: #94a3b8;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.clash-tool-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.clash-tool-tags span {
+  display: inline-flex;
+  padding: 7px 12px;
+  background: #334155;
+  border: 1px solid #475569;
+  border-radius: 6px;
+  color: #e2e8f0;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Pipeline Output */
+
+.clash-stage-output {
+  margin-top: 24px;
+  padding: 16px 20px;
+  background: #164e63;
+  border-left: 3px solid #22d3ee;
+  border-radius: 6px;
+}
+
+.clash-stage-output h4 {
+  color: #67e8f9;
+}
+
+.clash-stage-output p {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 14px;
+  line-height: 1.6;
+}

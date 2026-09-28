@@ -1,7 +1,6 @@
 
 import { useState } from 'react'
 import './App.css'
-import GroceryDashboard from './GroceryDashboard'
 
 const projects = [
   {
@@ -178,13 +177,24 @@ function App() {
                       : 'Project details +'}
                   </button>
   {project.id === 'grocery' && (
+    
+<a
+  href="/grocery-price-tracker"
+  className="dashboard-link"
+>
+  Explore Dashboard ↗
+</a>
+  )}
+
+  {project.title === 'Clash Royale ML Pipeline' && (
     <a
-      href="#grocery-dashboard"
-      className="dashboard-link"
+      href="/clash-royale"
+     className="dashboard-link"
     >
-      Explore Dashboard ↓
+     Explore ML Project ↗
     </a>
   )}
+
                   <a
                     href={project.github}
                     target="_blank"
@@ -197,9 +207,7 @@ function App() {
             ))}
           </div>
         </section>
-<div style={{ minHeight: '1200px' }}>
-  <GroceryDashboard />
-</div>
+
         <section id="about" className="section about">
           <p className="eyebrow">ABOUT ME</p>
           <h2>Analytics with a business perspective.</h2>
