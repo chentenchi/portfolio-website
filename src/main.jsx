@@ -13,6 +13,7 @@ import App from './App.jsx'
 import Experience from './Experience.jsx'
 import ClashRoyale from './ClashRoyale.jsx'
 import GroceryTracker from './GroceryTracker.jsx'
+import TaxAssistant from './TaxAssistant.jsx'
 
 // Scroll to the correct section when navigating between pages.
 
@@ -63,6 +64,12 @@ createRoot(document.getElementById('root')).render(
   path="/grocery-price-tracker"
   element={<GroceryTracker />}
 />
+
+<Route
+  path="/tax-assistant"
+  element={<TaxAssistant />}
+/>
+
 </Routes>
 </BrowserRouter>
   </StrictMode>,

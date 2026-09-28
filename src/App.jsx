@@ -186,6 +186,15 @@ function App() {
 </a>
   )}
 
+{project.title?.toLowerCase().includes('tax notice') && (
+  <a
+    href="/tax-assistant"
+    className="dashboard-link"
+  >
+    Explore Assistant ↗
+  </a>
+)}
+
   {project.title === 'Clash Royale ML Pipeline' && (
     <a
       href="/clash-royale"
