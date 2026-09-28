@@ -198,6 +198,15 @@ return (
       loading="lazy"
     />
 
+<a
+  href="/images/clash-roc.png"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="clash-chart-enlarge"
+>
+  View full-size ROC curve ↗
+</a>
+
     <p>
       The model achieved a ROC AUC of 0.6823,
       indicating moderate ability to distinguish
@@ -216,6 +225,14 @@ return (
     loading="lazy"
   />
 
+<a
+  href="/images/clash-confusion.png"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="clash-chart-enlarge"
+>
+  View full-size confusion matrix ↗
+</a>
   
 <p>
   Recreated from the model evaluation results documented

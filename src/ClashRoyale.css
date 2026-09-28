@@ -520,3 +520,51 @@
   font-size: 14px;
   line-height: 1.6;
 }
+/* Mobile Clash Royale workflow */
+
+@media (max-width: 600px) {
+  .clash-stages {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding-bottom: 8px;
+    margin-top: 24px;
+    scroll-snap-type: x proximity;
+  }
+
+  .clash-stage {
+    flex: 0 0 120px;
+    min-height: 90px;
+    padding: 14px 12px;
+    gap: 10px;
+    scroll-snap-align: start;
+  }
+
+  .clash-stage span {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+  }
+
+  .clash-stage:not(:last-child)::after {
+    display: none;
+  }
+
+  .clash-stage-details {
+    margin-top: 16px;
+    padding: 22px;
+  }
+}
+
+.clash-chart-enlarge {
+  display: inline-block;
+  margin-top: 12px;
+  color: #67e8f9;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.clash-chart-enlarge:hover {
+  text-decoration: underline;
+}

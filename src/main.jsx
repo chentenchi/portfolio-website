@@ -7,13 +7,16 @@ import {
   Route,
   useLocation
 } from 'react-router-dom'
+import { lazy, Suspense } from 'react'
 
 import './index.css'
 import App from './App.jsx'
 import Experience from './Experience.jsx'
 import ClashRoyale from './ClashRoyale.jsx'
-import GroceryTracker from './GroceryTracker.jsx'
-import TaxAssistant from './TaxAssistant.jsx'
+
+const GroceryTracker = lazy(() => import('./GroceryTracker.jsx'))
+
+const TaxAssistant = lazy(() => import('./TaxAssistant.jsx'))
 
 // Scroll to the correct section when navigating between pages.
 
@@ -62,12 +65,20 @@ createRoot(document.getElementById('root')).render(
 
 <Route
   path="/grocery-price-tracker"
-  element={<GroceryTracker />}
+  element={
+    <Suspense fallback={<p>Loading Grocery Price Tracker...</p>}>
+      <GroceryTracker />
+    </Suspense>
+  }
 />
 
 <Route
   path="/tax-assistant"
-  element={<TaxAssistant />}
+  element={
+    <Suspense fallback={<p>Loading Tax Notice Assistant...</p>}>
+      <TaxAssistant />
+    </Suspense>
+  }
 />
 
 </Routes>
