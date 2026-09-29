@@ -18,6 +18,8 @@ const GroceryTracker = lazy(() => import('./GroceryTracker.jsx'))
 
 const TaxAssistant = lazy(() => import('./TaxAssistant.jsx'))
 
+const UrbanForest = lazy(() => import('./UrbanForest.jsx'))
+
 // Scroll to the correct section when navigating between pages.
 
 function ScrollToSection() {
@@ -77,6 +79,15 @@ createRoot(document.getElementById('root')).render(
   element={
     <Suspense fallback={<p>Loading Tax Notice Assistant...</p>}>
       <TaxAssistant />
+    </Suspense>
+  }
+/>
+
+<Route
+  path="/urban-forest"
+  element={
+    <Suspense fallback={<p>Loading NYC Urban Forest...</p>}>
+      <UrbanForest />
     </Suspense>
   }
 />

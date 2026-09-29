@@ -42,6 +42,20 @@ const projects = [
     github: 'https://github.com/chentenchi/tax-notice-assistant-gpt',
     status: 'Sample document demo coming soon',
   },
+
+{
+  id: 'forest',
+  number: '04',
+  category: 'Analytics',
+  title: "Mapping NYC's Urban Forest",
+  description:
+    'An R-based geospatial analysis of NYC street trees, examining tree conditions across City Council districts.',
+  technologies: ['R', 'sf', 'ggplot2', 'Leaflet', 'Quarto'],
+  details:
+    'Combined public datasets using spatial joins, identified Queens District 32 as an area of concern, and developed an interactive map and tree-maintenance proposal.',
+  github: 'https://github.com/chentenchi/STA9750-2025-FALL',
+  status: 'Interactive map and geospatial case study',
+},
 ]
 
 const filters = [
@@ -204,6 +218,14 @@ function App() {
     </a>
   )}
 
+{project.id === 'forest' && (
+  <a
+    href="/urban-forest"
+    className="dashboard-link"
+  >
+    Explore Case Study ↗
+  </a>
+)}
                   <a
                     href={project.github}
                     target="_blank"
