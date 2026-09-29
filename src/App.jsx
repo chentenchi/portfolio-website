@@ -298,31 +298,53 @@ function App() {
           </div>
         </section>
 
-        <section id="about" className="section about">
-          <p className="eyebrow">ABOUT ME</p>
-          <h2>Analytics with a business perspective.</h2>
+        
+<section id="about" className="section about">
+  <p className="eyebrow">ABOUT ME</p>
+  <h2>Analytics with a business perspective.</h2>
 
-          <p>
-            I'm a data analyst with a master's degree in Business
-            Analytics and four years of prior professional experience
-            in HR and People Operations.
-          </p>
+  <div className="about-layout">
+    <figure className="about-portrait">
+      <img
+        src="/images/about-photo.jpg"
+        alt="Portrait of Tenchi Chen"
+        loading="lazy"
+      />
+      <figcaption>Based in New York City</figcaption>
+    </figure>
 
-          <p>
-            My work combines technical problem-solving with an
-            understanding of business processes, reporting, and
-            decision-making.
-          </p>
+    <div className="about-copy">
+      <p>
+        I'm a Business Analytics graduate with four years of
+        professional experience in HR and People Operations
+        before transitioning into analytics.
+      </p>
 
-          <div className="tags">
-            {[
-              'SQL', 'Python', 'Tableau', 'Excel',
-              'PySpark', 'R', 'Git', 'Google Cloud',
-            ].map((skill) => (
-              <span key={skill}>{skill}</span>
-            ))}
-          </div>
-        </section>
+      <p>
+        My recent work includes investigating data migration
+        discrepancies at NYC Aging, building sales and inventory
+        dashboards, and developing AI-assisted research tools.
+        I enjoy combining technical analysis with an understanding
+        of how businesses actually operate.
+      </p>
+
+      <div className="tags">
+        {[
+          'SQL',
+          'Python',
+          'Tableau',
+          'Excel',
+          'PySpark',
+          'R',
+          'Git',
+          'Google Cloud',
+        ].map((skill) => (
+          <span key={skill}>{skill}</span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
 
 <section id="contact" className="section contact">
   <p className="eyebrow">GET IN TOUCH</p>

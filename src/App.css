@@ -644,3 +644,68 @@ nav a:hover,
     object-position: center;
   }
 }
+
+/* About Me redesign */
+
+.about {
+  max-width: 1050px;
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  align-items: start;
+  gap: 48px;
+  margin-top: 32px;
+}
+
+.about-portrait {
+  margin: 0;
+  min-width: 0;
+}
+
+.about-portrait img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 25%;
+  border: 1px solid #475569;
+  border-radius: 10px;
+}
+
+.about-portrait figcaption {
+  margin-top: 12px;
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.about-copy {
+  min-width: 0;
+}
+
+.about-copy p {
+  margin: 0 0 22px;
+  color: #cbd5e1;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.about-copy .tags {
+  margin-top: 26px;
+}
+
+@media (max-width: 760px) {
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .about-portrait {
+    max-width: 260px;
+  }
+
+  .about-copy p {
+    font-size: 16px;
+  }
+}

@@ -4,62 +4,89 @@ import './App.css'
 import { Link } from 'react-router-dom'
 
 const experience = [
-  {
-    category: 'Data Analytics',
-    role: 'Data Intern',
-    company: 'The Pep Room',
-    dates: 'Jun 2026 – Aug 2026',
-    summary:
-      'Developed an FDA-focused RAG solution and built Excel dashboards to analyze sales performance and business trends.',
-    skills: ['Python', 'RAG', 'Excel', 'Data Visualization'],
-    details: [
-      'Contributed to a Retrieval-Augmented Generation solution that referenced FDA information to help verify peptide regulatory and approval status.',
-      'Analyzed sales and performance data in Excel and created dashboards to track trends and product-level performance.',
-      'Prepared and organized business data for reporting and analysis.'
-    ]
-  },
-  {
-    category: 'Data Analytics',
-    role: 'Data Analytics Intern',
-    company: 'NYC Department for the Aging',
-    dates: 'Feb 2026 – May 2026',
-    summary:
-      'Used SQL, Tableau and Excel to investigate data migration discrepancies, identify missing records and improve reporting accuracy.',
-    skills: ['SQL Server', 'Tableau', 'Tableau Prep', 'Excel'],
-    details: [
-      'Used Tableau to analyze program and operational data and identify reporting and data-quality issues.',
-      'Compared records across systems during a data migration and identified missing information in reported meal-service data.',
-      'Used Tableau Prep Builder to clean and organize datasets for dashboards and presentations.'
-    ]
-  },
-  {
-    category: 'HR & People Operations',
-    role: 'People Coordinator',
-    company: 'VML',
-    dates: 'Nov 2023 – Jun 2024',
-    summary:
-      'Managed HR operations across multiple North American business units, including employee data management, benefits administration and onboarding.',
-    skills: ['Workday', 'HRIS', 'Benefits', 'Onboarding'],
-    details: [
-      'Supported HR operations across multiple business units throughout North America.',
-      'Maintained employee information across Workday, Aloha, Index and Workfront.',
-      'Supported benefits requests and coordinated onboarding and offboarding for employees, contractors and temporary staff.'
-    ]
-  },
-  {
-    category: 'HR & People Operations',
-    role: 'HR & Talent Coordinator',
-    company: 'Purpose Campaigns',
-    dates: 'Apr 2021 – Feb 2023',
-    summary:
-      'Supported global recruitment and HR operations, maintained employee records for over 200 employees and analyzed workforce data for reporting.',
-    skills: ['Namely', 'Greenhouse', 'Recruiting', 'HR Reporting'],
-    details: [
-      'Supported recruiting across the US, EMEA, Brazil, India and Australia using Greenhouse and employer-of-record platforms.',
-      'Maintained the Namely HRIS for more than 200 global employees and produced recurring reports and audits.',
-      'Supported onboarding, benefits enrollment and employment documentation across multiple geographies.'
-    ]
-  },
+
+{
+  category: 'Data Analytics',
+  role: 'Data Intern',
+  company: 'The Pep Room',
+  dates: 'Jun 2026 – Aug 2026',
+  summary:
+    'Built Excel sales dashboards covering 18 products, supported inventory decisions, and contributed to an FDA-focused AI research tool.',
+  skills: [
+    'Excel',
+    'Power Query',
+    'Sales Analytics',
+    'Inventory Reporting',
+    'RAG',
+  ],
+  details: [
+    'Built Excel dashboards using PivotTables, XLOOKUP, SUMIFS and slicers to analyze 18 products with up to two years of sales history. The reporting helped guide inventory decisions as the estimated product-expiration rate decreased from 8.5% to 6.8%.',
+    'Identified weekly top-selling products and shared sales trends with the company to support inventory ordering and reduce the risk of stockouts.',
+    'Cleaned and reconciled sales exports using Power Query and Excel data-validation checks to improve reporting accuracy.',
+    'Supported development of an FDA-focused Retrieval-Augmented Generation (RAG) tool to research peptide approval and regulatory status.',
+  ],
+},
+{
+  category: 'Data Analytics',
+  role: 'Data Analytics Intern',
+  company: 'NYC Department for the Aging',
+  dates: 'Feb 2026 – May 2026',
+  summary:
+    'Investigated a data migration using SQL Server and Tableau, identifying approximately 22 missing meal-service entries per day during the month reviewed.',
+  skills: [
+    'SQL Server',
+    'SSMS',
+    'Tableau',
+    'Tableau Prep',
+    'Data Validation',
+  ],
+  details: [
+    'Compared records from legacy and replacement systems using SQL Server Management Studio, identifying approximately 22 missing meal-service entries per day during the month reviewed.',
+    'Cleaned, joined and standardized data across 11 service categories using Tableau Prep Builder, then built Tableau analyses of meal-service trends and data quality.',
+    'Documented the discrepancies, presented supporting SQL and Tableau findings, and recommended manual reconciliation to improve annual reporting accuracy.',
+  ],
+},
+  
+{
+  category: 'HR & People Operations',
+  role: 'People Coordinator',
+  company: 'VML',
+  dates: 'Nov 2023 – Jun 2024',
+  summary:
+    'Coordinated HR operations across multiple North American business units, managing employee records, benefits administration, and onboarding processes.',
+  skills: [
+    'Workday',
+    'HRIS',
+    'Benefits',
+    'Onboarding',
+    'HR Operations',
+  ],
+  details: [
+    'Maintained employee information across Workday, Aloha, Index, and Workfront, supporting accurate HR records and day-to-day operations.',
+    'Coordinated onboarding and offboarding for employees, contractors, and temporary staff across multiple business units.',
+    'Supported benefits administration and employee requests while working with HR teams across North America.',
+  ],
+},
+{
+  category: 'HR & People Operations',
+  role: 'HR & Talent Coordinator',
+  company: 'Purpose Campaigns',
+  dates: 'Apr 2021 – Feb 2023',
+  summary:
+    'Supported global recruitment and HR operations, maintained records for more than 200 employees, and prepared recurring workforce reports.',
+  skills: [
+    'Namely',
+    'Greenhouse',
+    'Recruiting',
+    'HR Reporting',
+    'HRIS',
+  ],
+  details: [
+    'Coordinated recruitment across the US and international teams, using Greenhouse to support hiring and candidate management.',
+    'Maintained HRIS records for more than 200 global employees in Namely and prepared recurring HR reports and audits.',
+    'Supported onboarding, benefits enrollment, and employee documentation across multiple geographic regions.',
+  ],
+},
   {
     category: 'HR & People Operations',
     role: 'People & Development Associate',
