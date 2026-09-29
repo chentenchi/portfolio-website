@@ -149,8 +149,8 @@ nav a:hover,
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
 }
 
 .project-card {
@@ -171,8 +171,8 @@ nav a:hover,
 .project-top {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 12px;
+  align-items: flex-start;
+  gap: 16px;
 }
 
 .project-number {
@@ -181,6 +181,9 @@ nav a:hover,
 }
 
 .project-category {
+  flex-shrink: 0;
+  max-width: 40%;
+  text-align: right;
   color: #22d3ee;
   font-size: 11px;
   font-weight: 700;
@@ -189,8 +192,11 @@ nav a:hover,
 }
 
 .project-card h3 {
-  margin: 36px 0 12px;
+  flex: 1;
+  min-width: 0;
+  margin: 0;
   font-size: 23px;
+  overflow-wrap: break-word;
 }
 
 .project-card > p {
@@ -389,5 +395,252 @@ nav a:hover,
 
   .header nav a {
     white-space: nowrap;
+  }
+}
+
+/* =========================================
+   REDESIGNED HOMEPAGE HERO
+   ========================================= */
+
+.hero {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 95px 0 90px;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: 55px;
+}
+
+.hero-copy {
+  min-width: 0;
+}
+
+.hero h1 {
+  max-width: 650px;
+  margin: 22px 0;
+  font-size: clamp(42px, 4.8vw, 66px);
+  line-height: 1.12;
+  letter-spacing: -2px;
+}
+
+.hero-description {
+  max-width: 570px;
+  color: #cbd5e1;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.hero-actions {
+  margin-top: 30px;
+}
+
+/* Actual project visualization */
+
+.hero-visual {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  background: #1e293b;
+  border: 1px solid #475569;
+  border-radius: 8px;
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+
+.hero-visual:hover {
+  border-color: #22d3ee;
+}
+
+.hero-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #ffffff;
+}
+
+.hero-visual-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 20px 22px;
+}
+
+.hero-visual-caption span:first-child {
+  color: #94a3b8;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.hero-visual-caption strong {
+  color: #f8fafc;
+  font-size: 19px;
+}
+
+.hero-visual-caption span:last-child {
+  color: #67e8f9;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Tablet and mobile */
+
+@media (max-width: 900px) {
+  .hero {
+    padding: 70px 0;
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .hero-visual {
+    width: 100%;
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 55px 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(36px, 10vw, 46px);
+    letter-spacing: -1px;
+  }
+
+  .hero-description {
+    font-size: 16px;
+  }
+
+  .hero-inner {
+    gap: 32px;
+  }
+
+  .hero-visual-caption {
+    padding: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-visual {
+    transition: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .project-top {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+
+  .project-category {
+    max-width: 100%;
+    text-align: left;
+  }
+}
+
+/* =========================================
+   HOMEPAGE PROJECT PREVIEWS
+   ========================================= */
+
+.project-card {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.project-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 240px;
+  min-width: 0;
+  margin: 22px 0 18px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #475569;
+  border-radius: 8px;
+}
+
+.project-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Match the Tax Assistant's dark interface */
+
+.project-preview-tax {
+  background: #1e293b;
+}
+
+/* Fictional tax notice result */
+
+.project-sample-result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  background: #164e63;
+  border-left: 3px solid #22d3ee;
+  border-radius: 5px;
+}
+
+.project-sample-result span {
+  color: #cbd5e1;
+  font-size: 12px;
+}
+
+.project-sample-result strong {
+  color: #67e8f9;
+  font-size: 20px;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .project-preview {
+    height: 190px;
+    margin: 18px 0;
+  }
+}
+
+/* Fill the Tax Assistant preview while keeping its heading visible */
+
+.project-preview-tax img {
+  object-fit: cover;
+  object-position: center top;
+}
+
+@media (max-width: 600px) {
+  .project-preview-grocery {
+    height: auto;
+    aspect-ratio: 2 / 1;
+  }
+
+  .project-preview-grocery img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 600px) {
+  .project-preview-tax img {
+    object-fit: contain;
+    object-position: center;
   }
 }

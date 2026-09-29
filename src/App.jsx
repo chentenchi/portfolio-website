@@ -9,20 +9,34 @@ const projects = [
     category: 'Analytics',
     title: 'Grocery Price Tracker',
     description:
-      'An automated data pipeline that collects grocery prices and tracks historical pricing, promotions, and basket costs.',
+      'Built an automated pricing pipeline and Tableau dashboard to track basket costs and compare Kroger prices against U.S. BLS benchmarks.',
     technologies: ['Python', 'Tableau', 'PowerShell'],
     details:
       'Explore price trends, compare products, and understand how grocery costs change over time.',
     github: 'https://github.com/chentenchi/Grocery-Price-Tracker',
     status: 'Interactive dashboard coming soon',
   },
+
+  {
+  id: 'forest',
+  number: '04',
+  category: 'Analytics',
+  title: "Mapping NYC's Urban Forest",
+  description:
+    'Used R and geospatial analysis to investigate NYC street-tree conditions, identifying approximately 28% of recorded trees as dead in Queens District 32.',
+  technologies: ['R', 'sf', 'ggplot2', 'Leaflet', 'Quarto'],
+  details:
+    'Combined public datasets using spatial joins, identified Queens District 32 as an area of concern, and developed an interactive map and tree-maintenance proposal.',
+  github: 'https://github.com/chentenchi/STA9750-2025-FALL',
+  status: 'Interactive map and geospatial case study',
+},
   {
     id: 'clash',
     number: '02',
     category: 'Machine Learning',
     title: 'Clash Royale ML Pipeline',
     description:
-      'A PySpark machine learning pipeline built using historical Clash Royale battle data.',
+      'Engineered battle features in PySpark and trained a logistic regression model to predict match outcomes, achieving a 0.6823 ROC AUC.',
     technologies: ['PySpark', 'Spark MLlib', 'Google Cloud'],
     details:
       'Explore the modeling process, feature engineering, and prediction results from the pipeline.',
@@ -35,28 +49,33 @@ const projects = [
     category: 'Applied AI',
     title: 'Tax Notice Assistant',
     description:
-      'A custom AI assistant designed to identify tax notices and transform unstructured documents into standardized data.',
+      'Developed a Custom GPT to identify tax notices and extract key information into structured tables, with an interactive browser-based demonstration.',
     technologies: ['AI', 'Document Extraction', 'Structured Data'],
     details:
       'See how fictional sample tax notices can be converted into a structured table.',
     github: 'https://github.com/chentenchi/tax-notice-assistant-gpt',
     status: 'Sample document demo coming soon',
   },
-
-{
-  id: 'forest',
-  number: '04',
-  category: 'Analytics',
-  title: "Mapping NYC's Urban Forest",
-  description:
-    'An R-based geospatial analysis of NYC street trees, examining tree conditions across City Council districts.',
-  technologies: ['R', 'sf', 'ggplot2', 'Leaflet', 'Quarto'],
-  details:
-    'Combined public datasets using spatial joins, identified Queens District 32 as an area of concern, and developed an interactive map and tree-maintenance proposal.',
-  github: 'https://github.com/chentenchi/STA9750-2025-FALL',
-  status: 'Interactive map and geospatial case study',
-},
 ]
+
+const projectPreviews = {
+  grocery: {
+    src: '/images/grocery-preview.png',
+    alt: 'Tableau dashboard comparing Kroger grocery prices with BLS benchmarks',
+  },
+  forest: {
+    src: '/images/forest-district-comparison.png',
+    alt: 'R visualization comparing tree counts and dead-tree percentages across selected NYC districts',
+  },
+  clash: {
+    src: '/images/clash-roc.png',
+    alt: 'ROC curve from the Clash Royale machine learning model',
+  },
+  tax: {
+    src: '/images/tax-assistant-preview.png',
+    alt: 'Fictional tax notice with extracted information shown in an analysis results table',
+  },
+}
 
 const filters = [
   'All',
@@ -95,35 +114,62 @@ function App() {
       </header>
 
       <main>
-        <section className="hero">
-          <div className="eyebrow">
-            DATA ANALYST · MS BUSINESS ANALYTICS
-          </div>
+        
+<section className="hero">
+  <div className="hero-inner">
+    <div className="hero-copy">
+      <p className="eyebrow">
+        TENCHI CHEN / ANALYTICS & AUTOMATION
+      </p>
 
-          <h1>
-            Hi, I'm <span>Tenchi Chen.</span>
-          </h1>
+      
+<h1>
+  Making data
+  <br />
+  <span>easier to act on.</span>
+</h1>
 
-          <p className="hero-description">
-            I build analytics tools, automated data pipelines,
-            machine learning models, and practical AI applications.
-          </p>
+      <p className="hero-description">
+        I investigate data, uncover patterns, and build practical
+        tools to solve business problems. My work combines
+        analytical methods with experience in public-sector
+        analytics and business operations.
+      </p>
 
-          <div className="hero-actions">
-            <a className="primary-button" href="#projects">
-              Explore Projects ↓
-            </a>
+      <div className="hero-actions">
+        <a className="primary-button" href="#projects">
+          Explore Projects ↓
+        </a>
 
-            <a
-              className="secondary-button"
-              href="https://github.com/chentenchi"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View GitHub ↗
-            </a>
-          </div>
-        </section>
+        <a
+          className="secondary-button"
+          href="https://github.com/chentenchi"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View GitHub ↗
+        </a>
+      </div>
+    </div>
+
+    <a
+      href="/urban-forest"
+      className="hero-visual"
+      aria-label="Explore the NYC Urban Forest case study"
+    >
+      <img
+        src="/images/forest-nyc-trees.png"
+        alt="NYC street tree locations mapped over City Council district boundaries"
+      />
+
+      <div className="hero-visual-caption">
+        <span>FEATURED ANALYSIS / R + SF</span>
+        <strong>Mapping NYC's Urban Forest</strong>
+        <span>Explore the case study ↗</span>
+      </div>
+    </a>
+  </div>
+</section>
 
         <section id="projects" className="section">
           <div className="section-heading">
@@ -151,16 +197,29 @@ function App() {
           <div className="project-grid">
             {visibleProjects.map((project) => (
               <article className="project-card" key={project.id}>
-                <div className="project-top">
-                  <span className="project-number">
-                    {project.number}
-                  </span>
-                  <span className="project-category">
-                    {project.category}
-                  </span>
-                </div>
+                
+<div className="project-top">
+  <h3>{project.title}</h3>
+  <span className="project-category">
+    {project.category}
+  </span>
+</div>  
 
-                <h3>{project.title}</h3>
+<div className={`project-preview project-preview-${project.id}`}>
+  <img
+    src={projectPreviews[project.id].src}
+    alt={projectPreviews[project.id].alt}
+    loading="lazy"
+  />
+</div>
+
+{project.id === 'tax' && (
+  <div className="project-sample-result">
+    <span>Fictional sample · Total due</span>
+    <strong>$575.00</strong>
+  </div>
+)}
+
                 <p>{project.description}</p>
 
                 <div className="tags">
