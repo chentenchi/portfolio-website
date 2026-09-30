@@ -32,7 +32,7 @@ const pipelineStages = [
   {
     title: "Model training",
     description:
-      "Trained a logistic regression model using Spark MLlib. Due to memory constraints, sampled 10% of the processed data, applied a 70/30 train-test split, and used three-fold cross-validation to tune the model.",
+      "Trained a logistic regression model using Spark MLlib. When the full processed dataset exceeded the available Spark memory, I used a 10% sample to keep development moving, then applied a 70/30 train-test split and three-fold cross-validation for model tuning.",
     tools: ["Spark MLlib", "Logistic Regression", "CrossValidator"],
     output: "Trained and saved logistic regression model",
   },
@@ -77,31 +77,7 @@ function ClashRoyale() {
               ))}
             </div>
           </div>
-
-          <div className="clash-performance">
-            <p className="eyebrow">MODEL PERFORMANCE</p>
-            <h2>Evaluating the model</h2>
-
-            <p>
-              Model performance was evaluated using classification metrics and
-              ROC analysis.
-            </p>
-
-            <div className="clash-metrics">
-              <div className="clash-metric-card">
-                <span>ROC AUC</span>
-                <strong>0.6823</strong>
-                <small>Discrimination performance</small>
-              </div>
-
-              <div className="clash-metric-card">
-                <span>Accuracy</span>
-                <strong>63.62%</strong>
-                <small>Correctly classified matches</small>
-              </div>
-            </div>
-          </div>
-
+          
           <div className="clash-workflow">
             <p className="eyebrow">PROJECT WORKFLOW</p>
             <h2>From data to predictions</h2>
@@ -116,9 +92,8 @@ function ClashRoyale() {
                 <button
                   key={stage.title}
                   type="button"
-                  className={`clash-stage ${
-                    activeStage === index ? "active" : ""
-                  }`}
+                  className={`clash-stage ${activeStage === index ? "active" : ""
+                    }`}
                   aria-pressed={activeStage === index}
                   onClick={() => setActiveStage(index)}
                 >
@@ -146,6 +121,30 @@ function ClashRoyale() {
               <div className="clash-stage-output">
                 <h4>OUTPUT</h4>
                 <p>{pipelineStages[activeStage].output}</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="clash-performance">
+            <p className="eyebrow">MODEL PERFORMANCE</p>
+            <h2>Evaluating the model</h2>
+
+            <p>
+              Model performance was evaluated using classification metrics and
+              ROC analysis.
+            </p>
+
+            <div className="clash-metrics">
+              <div className="clash-metric-card">
+                <span>ROC AUC</span>
+                <strong>0.6823</strong>
+                <small>Discrimination performance</small>
+              </div>
+
+              <div className="clash-metric-card">
+                <span>Accuracy</span>
+                <strong>63.62%</strong>
+                <small>Correctly classified matches</small>
               </div>
             </div>
           </div>
@@ -267,19 +266,25 @@ function ClashRoyale() {
                 <span>01 / MODEL PERFORMANCE</span>
                 <h3>Predicting match outcomes</h3>
                 <p>
-                  The logistic regression model achieved 63.62% accuracy and a
-                  ROC AUC of 0.6823, demonstrating its ability to identify
-                  patterns in historical match data.
+                  The logistic regression model achieved 63.62% accuracy and a ROC AUC
+                  of 0.6823, demonstrating its ability to identify patterns in historical
+                  match data. Feature inputs included card levels, player trophies,
+                  crowns earned, and historical battle information extracted from
+                  multiple seasons of gameplay data.
                 </p>
               </div>
 
               <div className="clash-finding-card">
                 <span>02 / ENGINEERING CHALLENGES</span>
-                <h3>Working with large datasets</h3>
+                <h3>Working within Spark memory limits</h3>
                 <p>
-                  Memory and serialization errors required adjustments to
-                  categorical feature encoding. I also reduced the modeling
-                  sample to manage Google Cloud computing limitations.
+                  Processing multiple seasons of battle data introduced memory and serialization 
+                  challenges during feature engineering and model training.
+                  I reduced the modeling data to a 10% sample to keep development moving.
+                  If I revisited the project, I would use the Spark UI to identify
+                  memory-heavy stages, trim unnecessary columns earlier, improve
+                  partitioning, reduce caching and cross-validation workloads, and
+                  scale executor memory only after optimizing the pipeline.
                 </p>
               </div>
 
@@ -288,8 +293,10 @@ function ClashRoyale() {
                 <h3>Improving the model</h3>
                 <p>
                   Future improvements could include exploring card combinations,
-                  incorporating current game balance data, and accounting for
-                  card placement and timing.
+                  incorporating current game balance data, and accounting for player
+                  skill and timing. Additional approaches could include testing Spark ML 
+                  tree-based models such as Random Forest or Gradient Boosted Trees, along 
+                  with expanded feature engineering.
                 </p>
               </div>
             </div>

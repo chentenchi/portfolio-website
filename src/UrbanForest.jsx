@@ -107,6 +107,23 @@ function UrbanForest() {
             </div>
           </div>
 
+          <section className="forest-methodology">
+            <p className="eyebrow">METHODOLOGY</p>
+            <h2>From public data to geographic insights</h2>
+
+            <div className="forest-method-grid">
+              {methods.map((method) => (
+                <div className="forest-method-card" key={method.number}>
+                  <span className="forest-method-number">{method.number}</span>
+
+                  <h3>{method.title}</h3>
+
+                  <p>{method.description}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+          
           <section className="forest-overview">
             <p className="eyebrow">PROJECT OVERVIEW</p>
             <h2>Where does NYC's tree canopy need attention?</h2>
@@ -206,19 +223,25 @@ function UrbanForest() {
             />
 
             <Tooltip
-              cursor={{ fill: "var(--accent-wash)" }}
+              cursor={{ fill: "rgba(255, 255, 255, 0.04)" }}
               contentStyle={{
-                background: "var(--surface-raised)",
-                border: "1px solid var(--line-strong)",
-                borderRadius: 6,
-                color: "var(--text)",
-              }}
-              formatter={(value) => [
-                `${Number(value).toFixed(1)}%`,
-                "Recorded dead",
-              ]}
-            />
-
+                  background: "#1c1c1c",
+                  border: "1px solid #3a3a3a",
+                  borderRadius: 6,
+                  color: "#f5f5f5",
+                  }}
+             labelStyle={{
+              color: "#f5f5f5",
+               fontWeight: 600,
+                }}
+                temStyle={{
+                  color: "#c7c7c7",
+               }}
+                formatter={(value) => [
+                    `${Number(value).toFixed(1)}%`,
+                 "Recorded dead",
+                   ]}
+             />
             <Bar
               dataKey="deadPct"
               barSize={22}
@@ -293,19 +316,26 @@ function UrbanForest() {
               tick={{ fontSize: 11 }}
             />
 
-            <Tooltip
-              cursor={{ fill: "var(--accent-wash)" }}
-              contentStyle={{
-                background: "var(--surface-raised)",
-                border: "1px solid var(--line-strong)",
-                borderRadius: 6,
-                color: "var(--text)",
-              }}
-              formatter={(value) => [
-                Number(value).toLocaleString("en-US"),
-                "Recorded trees",
-              ]}
-            />
+              <Tooltip
+                 cursor={{ fill: "rgba(255, 255, 255, 0.04)" }}
+                 contentStyle={{
+                  background: "#1c1c1c",
+                  border: "1px solid #3a3a3a",
+                   borderRadius: 6,
+                   color: "#f5f5f5",
+                }}
+                labelStyle={{
+                 color: "#f5f5f5",
+                  fontWeight: 600,
+                 }}
+                itemStyle={{
+                  color: "#c7c7c7",
+                }}
+                 formatter={(value) => [
+                   Number(value).toLocaleString("en-US"),
+                   "Recorded trees",
+                 ]}
+                />
 
             <Bar
               dataKey="trees"
@@ -393,23 +423,6 @@ function UrbanForest() {
               >
                 Open full-screen map ↗
               </a>
-            </div>
-          </section>
-
-          <section className="forest-methodology">
-            <p className="eyebrow">METHODOLOGY</p>
-            <h2>From public data to geographic insights</h2>
-
-            <div className="forest-method-grid">
-              {methods.map((method) => (
-                <div className="forest-method-card" key={method.number}>
-                  <span className="forest-method-number">{method.number}</span>
-
-                  <h3>{method.title}</h3>
-
-                  <p>{method.description}</p>
-                </div>
-              ))}
             </div>
           </section>
 
