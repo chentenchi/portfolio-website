@@ -1,4 +1,3 @@
-
 /* =========================================
    TAX NOTICE ASSISTANT
    ========================================= */
@@ -18,14 +17,14 @@
 
 .tax-hero h1 {
   margin: 12px 0 20px;
-  color: #f8fafc;
+  color: var(--text);
   font-size: clamp(36px, 5vw, 56px);
   line-height: 1.15;
 }
 
 .tax-hero > p:not(.eyebrow) {
   max-width: 760px;
-  color: #cbd5e1;
+  color: var(--muted);
   font-size: 16px;
   line-height: 1.8;
 }
@@ -39,9 +38,9 @@
 
 .tax-tags span {
   padding: 8px 14px;
-  color: #67e8f9;
-  background: #164e63;
-  border: 1px solid #155e75;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-bg);
   border-radius: 6px;
   font-size: 12px;
   font-weight: 600;
@@ -51,20 +50,20 @@
 
 .tax-demo {
   padding: 32px;
-  background: #1e293b;
-  border: 1px solid #475569;
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: 14px;
 }
 
 .tax-demo h2 {
   margin: 8px 0 28px;
-  color: #f8fafc;
+  color: var(--text);
   font-size: 30px;
 }
 
 .tax-demo h3 {
   margin: 0 0 18px;
-  color: #f8fafc;
+  color: var(--text);
   font-size: 18px;
 }
 
@@ -76,15 +75,15 @@
   gap: 10px;
   padding-bottom: 24px;
   margin-bottom: 28px;
-  border-bottom: 1px solid #475569;
+  border-bottom: 1px solid var(--line);
 }
 
 .tax-mode-buttons button,
 .tax-sample-buttons button {
   padding: 12px 20px;
-  color: #cbd5e1;
-  background: #273449;
-  border: 1px solid #475569;
+  color: var(--muted);
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
   border-radius: 8px;
   font: inherit;
   font-size: 14px;
@@ -98,15 +97,15 @@
 
 .tax-mode-buttons button:hover,
 .tax-sample-buttons button:hover {
-  border-color: #22d3ee;
+  border-color: var(--accent);
   transform: translateY(-2px);
 }
 
 .tax-mode-buttons button.active,
 .tax-sample-buttons button.active {
-  color: #e0faff;
-  background: #155e75;
-  border-color: #22d3ee;
+  color: var(--text);
+  background: var(--accent-bg);
+  border-color: var(--accent);
 }
 
 /* Sample Selection */
@@ -126,14 +125,14 @@
 .tax-upload-section {
   padding: 24px;
   margin-bottom: 32px;
-  background: #243247;
-  border: 1px dashed #64748b;
+  background: var(--surface-raised);
+  border: 1px dashed var(--line-strong);
   border-radius: 10px;
 }
 
 .tax-upload-section p {
   max-width: 700px;
-  color: #cbd5e1;
+  color: var(--muted);
   font-size: 14px;
   line-height: 1.7;
 }
@@ -141,7 +140,7 @@
 .tax-upload-section label {
   display: block;
   margin: 22px 0 10px;
-  color: #67e8f9;
+  color: var(--accent);
   font-size: 13px;
   font-weight: 700;
 }
@@ -151,9 +150,9 @@
   width: 100%;
   max-width: 550px;
   padding: 12px;
-  color: #e2e8f0;
-  background: #0f172a;
-  border: 1px solid #475569;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--line);
   border-radius: 8px;
   font: inherit;
   font-size: 13px;
@@ -162,8 +161,8 @@
 .tax-upload-section input[type="file"]::file-selector-button {
   padding: 9px 14px;
   margin-right: 14px;
-  color: #0f172a;
-  background: #22d3ee;
+  color: var(--bg);
+  background: var(--accent);
   border: none;
   border-radius: 5px;
   font-weight: 700;
@@ -193,8 +192,8 @@
 .tax-analysis {
   min-width: 0;
   padding: 24px;
-  background: #243247;
-  border: 1px solid #475569;
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
   border-radius: 10px;
 }
 
@@ -203,9 +202,9 @@
   padding: 22px;
   margin: 0;
   overflow: auto;
-  color: #cbd5e1;
-  background: #0f172a;
-  border: 1px solid #334155;
+  color: var(--muted);
+  background: var(--bg);
+  border: 1px solid var(--line);
   border-radius: 8px;
   font-family: Consolas, monospace;
   font-size: 12px;
@@ -225,9 +224,9 @@
 }
 
 .tax-status-valid {
-  color: #86efac;
-  background: #14532d;
-  border: 1px solid #16a34a;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
 }
 
 .tax-status-invalid {
@@ -238,15 +237,15 @@
 
 .tax-disclaimer {
   margin-bottom: 22px;
-  color: #94a3b8;
+  color: var(--muted);
   font-size: 12px;
   line-height: 1.7;
 }
 
 .tax-not-applicable {
   padding: 18px;
-  color: #cbd5e1;
-  background: #1e293b;
+  color: var(--muted);
+  background: var(--surface);
   border-radius: 7px;
   font-size: 14px;
   line-height: 1.7;
@@ -256,7 +255,7 @@
 
 .tax-results-table {
   overflow: hidden;
-  border: 1px solid #475569;
+  border: 1px solid var(--line);
   border-radius: 8px;
 }
 
@@ -266,7 +265,7 @@
   gap: 12px;
   align-items: start;
   padding: 13px 15px;
-  border-bottom: 1px solid #475569;
+  border-bottom: 1px solid var(--line);
 }
 
 .tax-field:last-child {
@@ -274,17 +273,17 @@
 }
 
 .tax-field:nth-child(even) {
-  background: #1e293b;
+  background: var(--surface);
 }
 
 .tax-field span {
-  color: #94a3b8;
+  color: var(--muted);
   font-size: 12px;
   line-height: 1.6;
 }
 
 .tax-field strong {
-  color: #f1f5f9;
+  color: var(--text);
   font-size: 12px;
   font-weight: 600;
   line-height: 1.6;
@@ -295,18 +294,18 @@
 
 .tax-field.tax-total {
   padding: 19px 15px;
-  background: #164e63;
-  border-top: 2px solid #22d3ee;
+  background: var(--accent-bg);
+  border-top: 2px solid var(--accent);
 }
 
 .tax-field.tax-total span {
-  color: #a5f3fc;
+  color: var(--accent);
   font-size: 14px;
   font-weight: 700;
 }
 
 .tax-field.tax-total strong {
-  color: #67e8f9;
+  color: var(--accent);
   font-size: 21px;
   font-weight: 800;
 }
@@ -316,29 +315,29 @@
 .tax-project-link {
   margin-top: 65px;
   padding: 32px;
-  background: #1e293b;
-  border: 1px solid #475569;
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: 12px;
 }
 
 .tax-project-link h2 {
   margin: 0 0 14px;
-  color: #f8fafc;
+  color: var(--text);
   font-size: 25px;
 }
 
 .tax-project-link p {
   max-width: 780px;
   margin-bottom: 25px;
-  color: #cbd5e1;
+  color: var(--muted);
   line-height: 1.8;
 }
 
 .tax-project-link a {
   display: inline-flex;
   padding: 12px 20px;
-  color: #0f172a;
-  background: #22d3ee;
+  color: var(--bg);
+  background: var(--accent);
   border-radius: 7px;
   font-size: 14px;
   font-weight: 700;
@@ -347,7 +346,7 @@
 }
 
 .tax-project-link a:hover {
-  background: #67e8f9;
+  background: var(--accent);
 }
 
 /* Keyboard Accessibility */
@@ -355,7 +354,7 @@
 .tax-page button:focus-visible,
 .tax-page a:focus-visible,
 .tax-page input:focus-visible {
-  outline: 3px solid #67e8f9;
+  outline: 3px solid var(--accent);
   outline-offset: 3px;
 }
 
@@ -427,19 +426,19 @@
 }
 
 .tax-project-link .tax-gpt-button {
-  background: #22d3ee;
-  color: #0f172a;
-  border: 1px solid #22d3ee;
+  background: var(--accent);
+  color: var(--bg);
+  border: 1px solid var(--accent);
 }
 
 .tax-project-link .tax-github-button {
   background: transparent;
-  color: #e2e8f0;
-  border: 1px solid #64748b;
+  color: var(--text);
+  border: 1px solid var(--line-strong);
 }
 
 .tax-project-link .tax-github-button:hover {
-  background: #334155;
-  color: #f8fafc;
-  border-color: #22d3ee;
+  background: var(--line);
+  color: var(--text);
+  border-color: var(--accent);
 }

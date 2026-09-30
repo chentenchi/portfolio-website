@@ -1,397 +1,308 @@
-
-import { useState } from 'react'
-import './App.css'
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import ProjectVisual from "./ProjectVisual.jsx";
+import { Arrow, Header, Footer } from "./SiteLayout.jsx";
+import "./App.css";
+import FeaturedCarousel from "./FeaturedCarousel.jsx";
 
 const projects = [
   {
-    id: 'grocery',
-    number: '01',
-    category: 'Analytics',
-    title: 'Grocery Price Tracker',
+    id: "grocery",
+    category: "Analytics",
+    title: "The price of an everyday basket.",
+    name: "Grocery Price Tracker",
     description:
-      'Built an automated pricing pipeline and Tableau dashboard to track basket costs and compare Kroger prices against U.S. BLS benchmarks.',
-    technologies: ['Python', 'Tableau', 'PowerShell'],
-    details:
-      'Explore price trends, compare products, and understand how grocery costs change over time.',
-    github: 'https://github.com/chentenchi/Grocery-Price-Tracker',
-    status: 'Interactive dashboard coming soon',
-  },
-
-  {
-  id: 'forest',
-  number: '04',
-  category: 'Analytics',
-  title: "Mapping NYC's Urban Forest",
-  description:
-    'Used R and geospatial analysis to investigate NYC street-tree conditions, identifying approximately 28% of recorded trees as dead in Queens District 32.',
-  technologies: ['R', 'sf', 'ggplot2', 'Leaflet', 'Quarto'],
-  details:
-    'Combined public datasets using spatial joins, identified Queens District 32 as an area of concern, and developed an interactive map and tree-maintenance proposal.',
-  github: 'https://github.com/chentenchi/STA9750-2025-FALL',
-  status: 'Interactive map and geospatial case study',
-},
-  {
-    id: 'clash',
-    number: '02',
-    category: 'Machine Learning',
-    title: 'Clash Royale ML Pipeline',
-    description:
-      'Engineered battle features in PySpark and trained a logistic regression model to predict match outcomes, achieving a 0.6823 ROC AUC.',
-    technologies: ['PySpark', 'Spark MLlib', 'Google Cloud'],
-    details:
-      'Explore the modeling process, feature engineering, and prediction results from the pipeline.',
-    github: 'https://github.com/chentenchi/clash-royale-ml-pipeline',
-    status: 'Interactive model demo coming soon',
+      "An automated pricing pipeline that puts grocery costs in context. Explore product-level trends alongside national BLS benchmarks.",
+    tools: "Python / Tableau / PowerShell",
+    path: "/grocery-price-tracker",
+    action: "Explore the dashboard",
   },
   {
-    id: 'tax',
-    number: '03',
-    category: 'Applied AI',
-    title: 'Tax Notice Assistant',
+    id: "forest",
+    category: "Analytics",
+    title: "A city of trees. Unevenly cared for.",
+    name: "Mapping NYC’s Urban Forest",
     description:
-      'Developed a Custom GPT to identify tax notices and extract key information into structured tables, with an interactive browser-based demonstration.',
-    technologies: ['AI', 'Document Extraction', 'Structured Data'],
-    details:
-      'See how fictional sample tax notices can be converted into a structured table.',
-    github: 'https://github.com/chentenchi/tax-notice-assistant-gpt',
-    status: 'Sample document demo coming soon',
+      "Connecting street-tree records with council districts to investigate where maintenance could make a difference.",
+    tools: "R / sf / ggplot2 / Leaflet",
+    path: "/urban-forest",
+    action: "Read the case study",
   },
-]
-
-const projectPreviews = {
-  grocery: {
-    src: '/images/grocery-preview.png',
-    alt: 'Tableau dashboard comparing Kroger grocery prices with BLS benchmarks',
+  {
+    id: "clash",
+    category: "Machine Learning",
+    title: "Finding patterns before the battle.",
+    name: "Clash Royale ML Pipeline",
+    description:
+      "From historical battles to engineered features: a distributed pipeline for predicting match outcomes.",
+    tools: "PySpark / Spark MLlib / Google Cloud",
+    path: "/clash-royale",
+    action: "Explore the pipeline",
   },
-  forest: {
-    src: '/images/forest-district-comparison.png',
-    alt: 'R visualization comparing tree counts and dead-tree percentages across selected NYC districts',
+  {
+    id: "tax",
+    category: "Applied AI",
+    title: "From a notice to something useful.",
+    name: "Tax Notice Assistant",
+    description:
+      "Turning unstructured documents into organized information. Try the local extraction demo with fictional samples.",
+    tools: "Custom GPT / Document extraction",
+    path: "/tax-assistant",
+    action: "Try the demo",
   },
-  clash: {
-    src: '/images/clash-roc.png',
-    alt: 'ROC curve from the Clash Royale machine learning model',
-  },
-  tax: {
-    src: '/images/tax-assistant-preview.png',
-    alt: 'Fictional tax notice with extracted information shown in an analysis results table',
-  },
-}
+];
 
-const filters = [
-  'All',
-  'Analytics',
-  'Machine Learning',
-  'Applied AI',
-]
-
-function App() {
-  const [filter, setFilter] = useState('All')
-  const [expanded, setExpanded] = useState(null)
-
-  const visibleProjects = projects.filter(
-    (project) =>
-      filter === 'All' || project.category === filter
-  )
-
+export default function App() {
+  const [filter, setFilter] = useState("All work");
+  const visible = projects.filter(
+    (project) => filter === "All work" || project.category === filter,
+  );
   return (
-    <div id="top" className="site">
-      <header className="header">
-        <a href="#top" className="logo">TC<span>.</span></a>
-
-        <nav aria-label="Main navigation">
-          <a href="#projects">Projects</a>
-          <a href="/experience">Experience</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-          <a
-            href="https://github.com/chentenchi"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub ↗
-          </a>
-        </nav>
-      </header>
-
-      <main>
-        
-<section className="hero">
-  <div className="hero-inner">
-    <div className="hero-copy">
-      <p className="eyebrow">
-        TENCHI CHEN / ANALYTICS & AUTOMATION
-      </p>
-
-      
-<h1>
-  Making data
-  <br />
-  <span>easier to act on.</span>
-</h1>
-
-      <p className="hero-description">
-        I investigate data, uncover patterns, and build practical
-        tools to solve business problems. My work combines
-        analytical methods with experience in public-sector
-        analytics and business operations.
-      </p>
-
-      <div className="hero-actions">
-        <a className="primary-button" href="#projects">
-          Explore Projects ↓
-        </a>
-
-        <a
-          className="secondary-button"
-          href="https://github.com/chentenchi"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          View GitHub ↗
-        </a>
-      </div>
-    </div>
-
-    <a
-      href="/urban-forest"
-      className="hero-visual"
-      aria-label="Explore the NYC Urban Forest case study"
-    >
-      <img
-        src="/images/forest-nyc-trees.png"
-        alt="NYC street tree locations mapped over City Council district boundaries"
-      />
-
-      <div className="hero-visual-caption">
-        <span>FEATURED ANALYSIS / R + SF</span>
-        <strong>Mapping NYC's Urban Forest</strong>
-        <span>Explore the case study ↗</span>
-      </div>
-    </a>
-  </div>
-</section>
-
-        <section id="projects" className="section">
+    <div id="top" className="site home">
+      <Header />
+      <main tabIndex={-1} id="main-content">
+        <section className="hero">
+          <div className="hero-copy">
+            <p className="eyebrow">
+              <span className="status-dot" /> TENCHI CHEN · DATA & BUSINESS
+              ANALYTICS
+            </p>
+            <h1>
+              Behind every number,
+              <br />a better <em>decision.</em>
+            </h1>
+            <p className="hero-description">
+              I turn messy data into clear, useful answers.
+              <br className="desktop-break" /> Bringing a business perspective
+              to analytics, automation, and the questions worth asking.
+            </p>
+            <div className="hero-actions">
+              <a className="primary-button" href="#projects">
+                Explore my work <Arrow direction="down" />
+              </a>
+              <a className="text-link" href="#about">
+                A little about me <Arrow />
+              </a>
+            </div>
+            <div className="hero-location">
+              <span className="location-icon">◎</span> Based in New York City{" "}
+              <span className="separator">/</span> Open to analytics
+              opportunities
+            </div>
+          </div>
+          <FeaturedCarousel />
+        </section>
+        <div className="capability-strip">
+          <span>THE TOOLKIT</span>
+          <p>
+            SQL <i /> Python <i /> R <i /> Tableau <i /> Excel <i /> PySpark
+          </p>
+          <span>Curiosity connects the dots.</span>
+        </div>
+        <section id="projects" className="section work-section">
           <div className="section-heading">
-            <p className="eyebrow">MY WORK</p>
-            <h2>Featured Projects</h2>
+            <div>
+              <p className="eyebrow"> / SELECTED WORK</p>
+              <h2>
+                Good questions.
+                <br />
+                <span>Practical answers.</span>
+              </h2>
+            </div>
             <p>
-              A collection of projects covering analytics,
-              machine learning, and applied AI.
+              Four projects, from everyday prices to public data. Each connects
+              a real question with a working analysis or tool.
             </p>
           </div>
-
-          <div className="filters" aria-label="Filter projects">
-            {filters.map((item) => (
-              <button
-                key={item}
-                className={filter === item ? 'filter active' : 'filter'}
-                onClick={() => setFilter(item)}
-                aria-pressed={filter === item}
-              >
-                {item}
-              </button>
-            ))}
-          </div>
-
-          <div className="project-grid">
-            {visibleProjects.map((project) => (
-              <article className="project-card" key={project.id}>
-                
-<div className="project-top">
-  <h3>{project.title}</h3>
-  <span className="project-category">
-    {project.category}
-  </span>
-</div>  
-
-<div className={`project-preview project-preview-${project.id}`}>
-  <img
-    src={projectPreviews[project.id].src}
-    alt={projectPreviews[project.id].alt}
-    loading="lazy"
-  />
-</div>
-
-{project.id === 'tax' && (
-  <div className="project-sample-result">
-    <span>Fictional sample · Total due</span>
-    <strong>$575.00</strong>
-  </div>
-)}
-
-                <p>{project.description}</p>
-
-                <div className="tags">
-                  {project.technologies.map((tech) => (
-                    <span key={tech}>{tech}</span>
-                  ))}
-                </div>
-
-                {expanded === project.id && (
-                  <div className="project-details">
-                    <p>{project.details}</p>
-                    <span>{project.status}</span>
-                  </div>
-                )}
-
-                <div className="project-actions">
+          <div className="work-controls">
+            <div className="filters" role="group" aria-label="Filter projects">
+              {["All work", "Analytics", "Machine Learning", "Applied AI"].map(
+                (item) => (
                   <button
-                    className="details-button"
-                    onClick={() =>
-                      setExpanded(
-                        expanded === project.id ? null : project.id
-                      )
-                    }
-                    aria-expanded={expanded === project.id}
+                    key={item}
+                    className={filter === item ? "filter active" : "filter"}
+                    onClick={() => setFilter(item)}
+                    aria-pressed={filter === item}
                   >
-                    {expanded === project.id
-                      ? 'Show less −'
-                      : 'Project details +'}
+                    {item}
                   </button>
-  {project.id === 'grocery' && (
-    
-<a
-  href="/grocery-price-tracker"
-  className="dashboard-link"
->
-  Explore Dashboard ↗
-</a>
-  )}
-
-{project.title?.toLowerCase().includes('tax notice') && (
-  <a
-    href="/tax-assistant"
-    className="dashboard-link"
-  >
-    Explore Assistant ↗
-  </a>
-)}
-
-  {project.title === 'Clash Royale ML Pipeline' && (
-    <a
-      href="/clash-royale"
-     className="dashboard-link"
-    >
-     Explore ML Project ↗
-    </a>
-  )}
-
-{project.id === 'forest' && (
-  <a
-    href="/urban-forest"
-    className="dashboard-link"
-  >
-    Explore Case Study ↗
-  </a>
-)}
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Source code ↗
-                  </a>
+                ),
+              )}
+            </div>
+            <span className="result-count" aria-live="polite">
+              {visible.length} projects
+            </span>
+          </div>
+          <div className="project-grid">
+            {visible.map((project) => (
+              <article
+                className={`project-card project-${project.id}`}
+                key={project.id}
+              >
+                <Link
+                  className="project-visual"
+                  to={project.path}
+                  aria-label={project.action + ": " + project.name}
+                >
+                  <ProjectVisual id={project.id} />
+                  <span className="visual-open">
+                    <Arrow />
+                  </span>
+                </Link>
+                <div className="project-copy">
+                  <div className="project-meta">
+                    <span>{project.category}</span>
+                  </div>
+                  <h3>
+                    <Link to={project.path}>{project.title}</Link>
+                  </h3>
+                  <p>{project.description}</p>
+                  <div className="project-tools">{project.tools}</div>
+                  <Link className="project-link" to={project.path}>
+                    {project.action} <Arrow />
+                  </Link>
                 </div>
               </article>
             ))}
           </div>
         </section>
-
-        
-<section id="about" className="section about">
-  <p className="eyebrow">ABOUT ME</p>
-  <h2>Analytics with a business perspective.</h2>
-
-  <div className="about-layout">
-    <figure className="about-portrait">
-      <img
-        src="/images/about-photo.jpg"
-        alt="Portrait of Tenchi Chen"
-        loading="lazy"
-      />
-      <figcaption>Based in New York City</figcaption>
-    </figure>
-
-    <div className="about-copy">
-      <p>
-        I'm a Business Analytics graduate with four years of
-        professional experience in HR and People Operations
-        before transitioning into analytics.
-      </p>
-
-      <p>
-        My recent work includes investigating data migration
-        discrepancies at NYC Aging, building sales and inventory
-        dashboards, and developing AI-assisted research tools.
-        I enjoy combining technical analysis with an understanding
-        of how businesses actually operate.
-      </p>
-
-      <div className="tags">
-        {[
-          'SQL',
-          'Python',
-          'Tableau',
-          'Excel',
-          'PySpark',
-          'R',
-          'Git',
-          'Google Cloud',
-        ].map((skill) => (
-          <span key={skill}>{skill}</span>
-        ))}
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="contact" className="section contact">
-  <p className="eyebrow">GET IN TOUCH</p>
-  <h2>Let's connect.</h2>
-
-  <p>
-    I'm always open to connecting about opportunities
-    in data analytics, data science, business analytics, and AI.
-    Feel free to reach out!
-  </p>
-
-  <div className="contact-links">
-    <a href="mailto:chentenchi@gmail.com">
-      Email ↗
-    </a>
-
-    <a
-      href="https://www.linkedin.com/in/tenchi/"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      LinkedIn ↗
-    </a>
-
-    <a
-      href="https://github.com/chentenchi"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      GitHub ↗
-    </a>
-  </div>
-</section>
+        <section id="experience" className="section home-experience">
+          <div className="experience-intro">
+            <p className="eyebrow"> / EXPERIENCE</p>
+            <h2>
+              Business context.
+              <br />
+              <span>Analytical thinking.</span>
+            </h2>
+            <p>
+              Four years in HR and People Operations taught me how organizations
+              work. Now I bring that perspective to their data.
+            </p>
+            <Link to="/experience" className="text-link">
+              View my full experience <Arrow />
+            </Link>
+          </div>
+          <div className="career-list">
+            <article>
+              <span className="career-date">JUN — AUG 2026</span>
+              <h3>The Pep Room</h3>
+              <span className="career-role">Data Intern</span>
+              <p>
+                Built Excel sales dashboards across 18 products, reconciled
+                sales exports, and supported inventory decisions.
+              </p>
+              <span className="career-tools">
+                Excel · Power Query · Sales analytics
+              </span>
+            </article>
+            <article>
+              <span className="career-date">FEB — MAY 2026</span>
+              <h3>NYC Department for the Aging</h3>
+              <span className="career-role">Data Analytics Intern</span>
+              <p>
+                Investigated migration discrepancies with SQL and Tableau,
+                identifying approximately 22 missing meal-service entries per
+                day during the month reviewed.
+              </p>
+              <span className="career-tools">
+                SQL Server · Tableau · Data validation
+              </span>
+            </article>
+            <article>
+              <span className="career-date">2019 — 2024</span>
+              <h3>A foundation in people & operations</h3>
+              <span className="career-role">
+                VML · Purpose Campaigns · Greater Than One
+              </span>
+              <p>
+                Employee records, workforce reporting, and the everyday
+                processes that make data quality matter.
+              </p>
+            </article>
+          </div>
+        </section>
+        <section id="about" className="section about">
+          <div className="about-image">
+            <img
+              src="/images/about-photo.jpg"
+              alt="Tenchi Chen"
+              loading="lazy"
+              width="600"
+              height="750"
+            />
+            <span>Tenchi Chen / New York, NY</span>
+          </div>
+          <div className="about-copy">
+            <p className="eyebrow"> / THE PERSON BEHIND THE WORK</p>
+            <h2>
+              Curious about the data.
+              <br />
+              <span>Grounded in the real world.</span>
+            </h2>
+            <p>
+              I’m Tenchi, a Business Analytics graduate making the move from
+              people operations into data analytics.
+            </p>
+            <p>
+              I like the investigative part of the work: tracing a discrepancy,
+              connecting sources, and finding the explanation behind a pattern.
+              Just as much, I care about making the result understandable to the
+              people who need it.
+            </p>
+            <p>
+              My work spans public-sector data validation, sales and inventory
+              reporting, geospatial analysis, and practical automation.
+            </p>
+            <a
+              className="text-link"
+              href="https://www.linkedin.com/in/tenchi/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Connect on LinkedIn <Arrow />
+            </a>
+          </div>
+        </section>
+        <section id="contact" className="contact">
+          <div>
+            <p className="eyebrow">
+              <span className="status-dot" /> LET’S CONNECT
+            </p>
+            <h2>
+              Have a question
+              <br />
+              worth <em>exploring?</em>
+            </h2>
+            <p>
+              I’m looking for my next opportunity in data and business
+              analytics.
+              <br />
+              Let’s talk about where I could contribute.
+            </p>
+            <a className="contact-email" href="mailto:chentenchi@gmail.com">
+              chentenchi@gmail.com <Arrow />
+            </a>
+          </div>
+          <div className="contact-aside">
+            <span>FIND ME ELSEWHERE</span>
+            <a
+              href="https://www.linkedin.com/in/tenchi/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn <Arrow />
+            </a>
+            <a
+              href="https://github.com/chentenchi"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub <Arrow />
+            </a>
+          </div>
+        </section>
       </main>
-
-      <footer className="footer">
-        <span>© {new Date().getFullYear()} Tenchi Chen</span>
-        <a
-          href="https://github.com/chentenchi"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          GitHub ↗
-        </a>
-      </footer>
+      <Footer />
     </div>
-  )
+  );
 }
-
-export default App

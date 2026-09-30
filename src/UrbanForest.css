@@ -19,7 +19,7 @@
 .forest-hero h1 {
   max-width: 850px;
   margin: 14px 0 24px;
-  color: #f8fafc;
+  color: var(--text);
   font-size: clamp(36px, 5vw, 56px);
   line-height: 1.12;
   letter-spacing: -1.5px;
@@ -27,7 +27,7 @@
 
 .forest-intro {
   max-width: 750px;
-  color: #cbd5e1;
+  color: var(--muted);
   font-size: 18px;
   line-height: 1.8;
 }
@@ -41,9 +41,9 @@
 
 .forest-tags span {
   padding: 7px 12px;
-  color: #a5f3fc;
-  background: #164e63;
-  border: 1px solid #155e75;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-bg);
   border-radius: 5px;
   font-size: 12px;
   font-weight: 600;
@@ -67,28 +67,30 @@
   font-size: 14px;
   font-weight: 700;
   text-decoration: none;
-  transition: background 0.2s, border-color 0.2s;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
 }
 
 .forest-primary-link {
-  color: #0f172a;
-  background: #22d3ee;
-  border: 1px solid #22d3ee;
+  color: var(--bg);
+  background: var(--accent);
+  border: 1px solid var(--accent);
 }
 
 .forest-primary-link:hover {
-  background: #67e8f9;
+  background: var(--accent);
 }
 
 .forest-secondary-link {
-  color: #e2e8f0;
+  color: var(--text);
   background: transparent;
-  border: 1px solid #64748b;
+  border: 1px solid var(--line-strong);
 }
 
 .forest-secondary-link:hover {
-  background: #334155;
-  border-color: #22d3ee;
+  background: var(--line);
+  border-color: var(--accent);
 }
 
 /* Case study sections */
@@ -98,13 +100,13 @@
 .forest-methodology,
 .forest-proposal {
   padding: 55px 0;
-  border-top: 1px solid #334155;
+  border-top: 1px solid var(--line);
 }
 
 .forest-page section h2 {
   max-width: 800px;
   margin: 12px 0 25px;
-  color: #f8fafc;
+  color: var(--text);
   font-size: clamp(25px, 3vw, 34px);
   line-height: 1.3;
   letter-spacing: -0.5px;
@@ -114,7 +116,7 @@
 .forest-findings > p:not(.eyebrow),
 .forest-proposal > p:not(.eyebrow) {
   max-width: 780px;
-  color: #cbd5e1;
+  color: var(--muted);
   font-size: 16px;
   line-height: 1.85;
 }
@@ -133,14 +135,14 @@
   flex-direction: column;
   gap: 12px;
   padding: 30px;
-  background: #1e293b;
-  border: 1px solid #475569;
-  border-top: 3px solid #22d3ee;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--accent);
   border-radius: 8px;
 }
 
 .forest-metric-value {
-  color: #67e8f9;
+  color: var(--accent);
   font-size: clamp(38px, 5vw, 55px);
   font-weight: 800;
   line-height: 1;
@@ -148,14 +150,14 @@
 }
 
 .forest-metric-label {
-  color: #cbd5e1;
+  color: var(--muted);
   font-size: 15px;
   font-weight: 600;
 }
 
 .forest-findings .forest-data-note {
   margin-top: 24px;
-  color: #94a3b8;
+  color: var(--muted);
   font-size: 12px;
   line-height: 1.7;
 }
@@ -172,15 +174,15 @@
 .forest-method-card {
   min-width: 0;
   padding: 26px;
-  background: #1e293b;
-  border: 1px solid #475569;
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: 8px;
 }
 
 .forest-method-number {
   display: block;
   margin-bottom: 28px;
-  color: #67e8f9;
+  color: var(--accent);
   font-size: 13px;
   font-weight: 800;
   letter-spacing: 1px;
@@ -188,14 +190,14 @@
 
 .forest-method-card h3 {
   margin: 0 0 15px;
-  color: #f8fafc;
+  color: var(--text);
   font-size: 19px;
   line-height: 1.35;
 }
 
 .forest-method-card p {
   margin: 0;
-  color: #cbd5e1;
+  color: var(--muted);
   font-size: 14px;
   line-height: 1.8;
 }
@@ -203,7 +205,7 @@
 /* Project proposal */
 
 .forest-proposal {
-  border-left: 3px solid #22d3ee;
+  border-left: 3px solid var(--accent);
   padding-left: 30px;
 }
 
@@ -212,8 +214,8 @@
 .forest-report {
   margin-top: 25px;
   padding: 35px;
-  background: #1e293b;
-  border: 1px solid #475569;
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: 10px;
 }
 
@@ -223,14 +225,14 @@
 
 .forest-report p {
   max-width: 750px;
-  color: #cbd5e1;
+  color: var(--muted);
   line-height: 1.8;
 }
 
 /* Accessibility */
 
 .forest-page a:focus-visible {
-  outline: 3px solid #67e8f9;
+  outline: 3px solid var(--accent);
   outline-offset: 4px;
 }
 
@@ -311,8 +313,8 @@
 .forest-chart {
   margin: 32px 0;
   overflow: hidden;
-  background: #1e293b;
-  border: 1px solid #475569;
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: 10px;
 }
 
@@ -325,7 +327,7 @@
 
 .forest-chart figcaption {
   padding: 18px 20px 8px;
-  color: #94a3b8;
+  color: var(--muted);
   font-size: 13px;
   line-height: 1.7;
 }
@@ -333,7 +335,7 @@
 .forest-chart a {
   display: inline-block;
   margin: 0 20px 20px;
-  color: #67e8f9;
+  color: var(--accent);
   font-size: 13px;
   font-weight: 600;
   text-decoration: none;
@@ -347,21 +349,21 @@
 
 .forest-interactive-map {
   padding: 55px 0;
-  border-top: 1px solid #334155;
+  border-top: 1px solid var(--line);
 }
 
 .forest-interactive-map > p:not(.eyebrow) {
   max-width: 780px;
   margin-bottom: 28px;
-  color: #cbd5e1;
+  color: var(--muted);
   font-size: 16px;
   line-height: 1.8;
 }
 
 .forest-map-container {
   overflow: hidden;
-  background: #f8fafc;
-  border: 1px solid #475569;
+  background: var(--text);
+  border: 1px solid var(--line);
   border-radius: 10px;
 }
 
@@ -383,11 +385,11 @@
 }
 
 .forest-map-footer span {
-  color: #94a3b8;
+  color: var(--muted);
 }
 
 .forest-map-footer a {
-  color: #67e8f9;
+  color: var(--accent);
   font-weight: 600;
   text-decoration: none;
 }
@@ -404,4 +406,143 @@
   .forest-map-frame {
     height: 420px;
   }
+}
+
+/* Dark treatment for original R charts */
+
+.forest-chart-dark {
+  padding: 18px 18px 0;
+  background: var(--surface);
+}
+
+.forest-chart-dark img {
+  width: 100%;
+  background: #000;
+  border-radius: 8px;
+  filter: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.95);
+}
+
+.forest-chart-dark figcaption {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.forest-chart-dark a {
+  margin-left: 2px;
+}
+/* Native district comparison */
+
+.forest-comparison {
+  margin: 32px 0;
+}
+
+.forest-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.forest-comparison-panel {
+  min-width: 0;
+  padding: 24px 20px 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.forest-comparison-heading {
+  margin-bottom: 18px;
+}
+
+.forest-comparison-heading span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+}
+
+.forest-comparison-heading h3 {
+  margin: 0 0 6px;
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 650;
+}
+
+.forest-comparison-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.forest-comparison-chart {
+  width: 100%;
+  height: 255px;
+}
+
+.forest-comparison figcaption {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+@media (max-width: 800px) {
+  .forest-comparison-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .forest-comparison-panel {
+    padding: 20px 14px 14px;
+  }
+
+  .forest-comparison-chart {
+    height: 245px;
+  }
+}
+/* Dark treatment for NYC tree map */
+
+.forest-map-image-dark {
+  background: #0f0f0f;
+  filter:
+    invert(1)
+    hue-rotate(180deg)
+    brightness(0.88)
+    contrast(0.92);
+}
+/* NYC tree map container */
+
+.forest-map-card {
+  padding: 0;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.forest-map-card img {
+  display: block;
+  width: 100%;
+  margin: 0;
+  border: 0;
+}
+
+.forest-map-card figcaption {
+  margin: 0;
+  padding: 12px 16px 4px;
+  background: var(--surface);
+  color: var(--muted);
+}
+
+.forest-map-card > a {
+  display: block;
+  width: fit-content;
+  margin: 0 !important;
+  padding: 4px 16px 16px;
+  background: var(--surface);
 }

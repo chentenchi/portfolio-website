@@ -1,11 +1,10 @@
-
 .grocery-dashboard {
   width: 100%;
 }
 
 .dashboard-description,
 .dashboard-date {
-  color: #94a3b8;
+  color: var(--muted);
   line-height: 1.7;
 }
 
@@ -23,8 +22,8 @@
 
 .dashboard-kpi,
 .dashboard-chart {
-  background: #172235;
-  border: 1px solid #334155;
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: 14px;
   padding: 26px;
 }
@@ -37,17 +36,17 @@
 
 .dashboard-kpi > span,
 .selected-price > span {
-  color: #94a3b8;
+  color: var(--muted);
   font-size: 14px;
 }
 
 .dashboard-kpi strong {
-  color: #f8fafc;
+  color: var(--text);
   font-size: 36px;
 }
 
 .dashboard-kpi small {
-  color: #94a3b8;
+  color: var(--muted);
 }
 
 .dashboard-chart-header {
@@ -64,7 +63,7 @@
 }
 
 .dashboard-chart-header p {
-  color: #94a3b8;
+  color: var(--muted);
   font-size: 14px;
 }
 
@@ -76,13 +75,13 @@
 
 .product-selector label {
   font-size: 13px;
-  color: #94a3b8;
+  color: var(--muted);
 }
 
 .product-selector select {
-  background: #0b1120;
-  color: #f8fafc;
-  border: 1px solid #475569;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--line);
   border-radius: 8px;
   padding: 12px;
   max-width: 100%;
@@ -103,7 +102,7 @@
 }
 
 .sale-label {
-  color: #22c55e !important;
+  color: var(--accent) !important;
   font-weight: 700;
 }
 
@@ -113,7 +112,7 @@
 }
 
 .dashboard-note {
-  color: #94a3b8;
+  color: var(--muted);
   font-size: 12px;
   line-height: 1.7;
   margin-top: 18px;
@@ -141,22 +140,22 @@
 .benchmark-notice {
   margin: 16px 0 20px;
   padding: 14px 18px;
-  background: rgba(56, 189, 248, 0.06);
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  border-left: 3px solid #38bdf8;
+  background: var(--accent-wash);
+  border: 1px solid var(--accent-border);
+  border-left: 3px solid var(--accent);
   border-radius: 6px;
 }
 
 .benchmark-notice strong {
   display: block;
   margin-bottom: 6px;
-  color: #7dd3fc;
+  color: var(--accent);
   font-size: 14px;
 }
 
 .benchmark-notice p {
   margin: 0;
-  color: #cbd5e1;
+  color: var(--muted);
   font-size: 13px;
   line-height: 1.6;
 }
@@ -170,21 +169,21 @@
 
 .benchmark-summary > div {
   padding: 16px;
-  background: #111827;
-  border: 1px solid #475569;
+  background: var(--bg);
+  border: 1px solid var(--line);
   border-radius: 8px;
 }
 
 .benchmark-summary span {
   display: block;
   margin-bottom: 8px;
-  color: #94a3b8;
+  color: var(--muted);
   font-size: 13px;
 }
 
 .benchmark-summary strong {
   display: block;
-  color: #f8fafc;
+  color: var(--text);
   font-size: 18px;
   line-height: 1.4;
 }
